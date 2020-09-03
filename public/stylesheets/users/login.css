@@ -99,7 +99,7 @@ label {
     margin-bottom: 0%;
 }
 
-#toggle{
+#toggle, #toggle2{
     color: #457B9D;
     cursor: pointer;
 }
