@@ -8,8 +8,9 @@
         <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
         <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
     </div>
+    <div class="dummy">
     <div class="login" id="option2">
-        <form style="margin-top: 80px;">
+        <form style="padding-top: 100px;">
             <label for="email">EMAIL</label>
             <div class="form-group">
                 <input type="text" name="email" id="email">
@@ -18,12 +19,34 @@
             <div class="form-group">
                 <input type="password" name="password" id="password">
             </div>
-            <div><button class="btn btn-dark" type="submit" class="submit-btn">Login</button>  <span id="temp">or</span> <a id="toggle" href="/users/register">Sign Up</a> </div>
+            <div><button class="btn btn-dark" type="submit" class="submit-btn">Login</button>  <span id="temp">or</span> <a id="toggle">Sign Up</a> </div>
         </form>
         <div class="container" id="options">
             <a>Forgot password?</a>
         </div>
     </div>
+    <div class="login" id="option3">
+        <form>
+            <label for="name">NAME (or Roll Number)</label>
+            <div class="form-group">
+                <input type="text" name="name" id="name">
+            </div>
+            <label for="email">EMAIL</label>
+            <div class="form-group">
+                <input type="text" name="email" id="email">
+            </div>
+            <label for="password">PASSWORD</label>
+            <div class="form-group">
+                <input type="password" name="password" id="password">
+            </div>
+            <label for="password">RE-ENTER PASSWORD</label>
+            <div class="form-group">
+                <input type="password" name="password2" id="password2">
+            </div>
+            <div><button class="btn btn-dark" type="submit" class="submit-btn">Register</button>  <span id="temp">or</span> <a id="toggle2">Sign In</a> </div>
+        </form>
+        </div>
+</div>
 </div>
 <%- include ("../partials/footer") %>
 <script type="text/javascript" src="../javascripts/users/login.js"></script>

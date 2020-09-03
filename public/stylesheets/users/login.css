@@ -12,7 +12,13 @@ a {
     flex-wrap: wrap;
     justify-content: center;
 }
+#option3 {
+    display: none;
+}
 #option2 {
+    display: none;
+}
+#option2, #option3 {
     box-shadow: 0 0px 2px rgba(0,0,0,0.07), 
                 0 0px 4px rgba(0,0,0,0.07), 
                 0 0px 8px rgba(0,0,0,0.07), 
@@ -21,6 +27,7 @@ a {
                 0 0px 64px rgba(0,0,0,0.07);
     width: 450px;
     height: 470px;
+    z-index: 99;
 }
 
 #option1 {
@@ -30,6 +37,7 @@ a {
     background-image: url('/images/picture1.jpg');
     background-size: cover;
     background-position: left;
+    z-index: 99999999;
 }
 
 #option1 img {
@@ -42,6 +50,7 @@ a {
     color: white;
     padding: 5%;
     text-align: center;
+    margin-top: 9%;
 }
 
 .btn-google {
@@ -104,4 +113,72 @@ label {
 #temp {
     padding-left: 5px;
     padding-right: 5px;
+}
+
+.move-right {
+    transform: translate(125.7%, 0);
+    -webkit-transform: translate(125.7%, 0);
+    /** Chrome & Safari **/
+    -o-transform: translate(125.7%, 0);
+    /** Opera **/
+    -moz-transform: translate(125.7%, 0);
+     transition: all 1s ease-in-out;
+     -webkit-transition: all 1s ease-in-out;
+     /** Chrome & Safari **/
+     -moz-transition: all 1s ease-in-out;
+     /** Firefox **/
+     -o-transition: all 1s ease-in-out;
+     /** Opera **/
+     z-index: 999999;
+}
+
+.move-left {
+    transform: translate(-80%, 0);
+    -webkit-transform: translate(-80%, 0);
+    /** Chrome & Safari **/
+    -o-transform: translate(-80%, 0);
+    /** Opera **/
+    -moz-transform: translate(-80%, 0);
+    transition: all 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+    /** Chrome & Safari **/
+    -moz-transition: all 1s ease-in-out;
+    /** Firefox **/
+    -o-transition: all 1s ease-in-out;
+    /** Opera **/
+    z-index: 99999;
+}
+
+.move-right2 {
+    transform: translate(0%, 0);
+    -webkit-transform: translate(0%, 0);
+    /** Chrome & Safari **/
+    -o-transform: translate(0%, 0);
+    /** Opera **/
+    -moz-transform: translate(0%, 0);
+     transition: all 1s ease-in-out;
+     -webkit-transition: all 1s ease-in-out;
+     /** Chrome & Safari **/
+     -moz-transition: all 1s ease-in-out;
+     /** Firefox **/
+     -o-transition: all 1s ease-in-out;
+     /** Opera **/
+     z-index: 999999;
+}
+
+.move-left2 {
+    transform: translate(0%, 0);
+    -webkit-transform: translate(0%, 0);
+    /** Chrome & Safari **/
+    -o-transform: translate(0%, 0);
+    /** Opera **/
+    -moz-transform: translate(0%, 0);
+    transition: all 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+    /** Chrome & Safari **/
+    -moz-transition: all 1s ease-in-out;
+    /** Firefox **/
+    -o-transition: all 1s ease-in-out;
+    /** Opera **/
+    z-index: 99999;
 }
