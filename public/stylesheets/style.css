@@ -1,8 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #f0cbb3;
 }
 
-a {
-  color: #00B7FF;
+.navbar-light .navbar-nav .nav-link {
+  color: black !important;
+}
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #457B9D !important;
+}
+.navbar-brand {
+  border-bottom: 2px solid black !important;
+}
+
+#mainNavbar {
+  padding: 3%;
+  padding-right: 5%;
+  margin-top: 2%;
+  font-family: 'Rubik', sans-serif;
+  font-size: 15px;
+}
+
+.nav-item{
+  padding: 0% 3% !important;
 }

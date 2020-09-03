@@ -1,0 +1,107 @@
+* {
+    font-family: 'Rubik', sans-serif;
+}
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+#signin {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#option2 {
+    box-shadow: 0 0px 2px rgba(0,0,0,0.07), 
+                0 0px 4px rgba(0,0,0,0.07), 
+                0 0px 8px rgba(0,0,0,0.07), 
+                0 0px 16px rgba(0,0,0,0.07),
+                0 0px 32px rgba(0,0,0,0.07), 
+                0 0px 64px rgba(0,0,0,0.07);
+    width: 450px;
+    height: 470px;
+}
+
+#option1 {
+    width: 350px;
+    height: 370px;
+    align-self: center;
+    background-image: url('/images/picture1.jpg');
+    background-size: cover;
+    background-position: left;
+}
+
+#option1 img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#option1 h1{
+    color: white;
+    padding: 5%;
+    text-align: center;
+}
+
+.btn-google {
+    color: white;
+    background-color: #ea4335;
+  }
+  
+.btn-facebook {
+    color: white;
+    background-color: #3b5998;
+  }
+
+.btn-facebook, .btn-google {
+    width: 80%;
+    font-size: 15px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.btn-facebook:hover, .btn-google:hover {
+    color: white;
+}
+
+form {
+    padding: 10%;
+}
+
+form .btn {
+    background-color: #457B9D;
+    border: none;
+}
+input {
+    width: 100%;
+    border: none;
+    border-bottom: 3px solid #1D3557;
+    background-color: transparent;
+    margin-bottom: 4%;
+}
+textarea:focus,
+input:focus {
+    outline: none;
+    border-bottom: 3px solid #1D3557;
+}
+
+label {
+    margin-bottom: 0%;
+}
+
+#toggle{
+    color: #457B9D;
+    cursor: pointer;
+}
+
+#options {
+    font-size: 15px;
+    text-align: right;
+    padding-right: 25px;  
+}
+
+#temp {
+    padding-left: 5px;
+    padding-right: 5px;
+}
