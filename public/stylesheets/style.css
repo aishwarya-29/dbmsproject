@@ -26,3 +26,13 @@ body {
 .nav-item{
   padding: 0% 3% !important;
 }
+
+.dot {
+  height: 15px;
+  width: 15px;
+  background-color: #457B9D;
+  border-radius: 50%;
+  display: inline-block;
+  margin-bottom: 7px;
+  margin-right: 5px;
+}

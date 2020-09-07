@@ -1,0 +1,13 @@
+#menu, #content {
+    border: 2px solid black;
+    width: 100%;
+    padding: 4% 3%;
+}
+
+* {
+    font-family: 'Rubik', sans-serif;
+}
+
+#heading {
+    padding: 5%;
+}
