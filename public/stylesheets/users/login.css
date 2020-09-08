@@ -40,11 +40,6 @@ a {
     z-index: 99999999;
 }
 
-#option1 img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
 
 #option1 h1{
     color: white;
@@ -182,3 +177,4 @@ label {
     /** Opera **/
     z-index: 99999;
 }
+
