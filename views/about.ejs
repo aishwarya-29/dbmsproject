@@ -2,34 +2,49 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/stylesheets/about.css">
 </head>
-
-<div class="container">
-    <div class="container" id="heading">
-        <span class="dot"></span> 
-        <h1 style="display: inline;">  Create a new Time Table</h1>
-    </div>
-    <div class="row">
-        <div class="col-md-3" id="menu">
-            1. Here's what we need
+<div class="container" id="content">
+  <img src="/images/aboutt.jpg" class="img">
+    <!-- <div class="flex-container">
+      <div class="heading">
+        - ABOUT US -
+      </div>
+    </div> -->
+    <br>
+    <br>
+    <h3 class="h3"> - MANDATORY -</h3>
+    <div class="flex-container">
+        <div class="box">
+        <img src="/images/time.jpg" id="imgic">
+        <h3>Laid back or Jam Packed?</h3>
+        <div class="text">Students are allowed to choose the number of days in a week that they wish to attend classes</div>
         </div>
-        <div class="col-md-9" id="content">
-            <li>Days in a week - 5 or 6?</li>
-            <li>Number of hours in a day - choose between 1 - 12. </li>
-            <li>...</li>
-            <li>...</li>
+        <div class="box">
+        <img src="/images/free.jpg" id="imgic"> 
+        <h3>When are you available?</h3>
+        <div class="text">
+          According to the course load, students can include more hours than the minimum requirement</div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3" id="menu">
-            2. Editable Constraints
+        <div class="box">
+        <img src="/images/course.png" id="imgic"> 
+        <h3>What piques your interest?</h3>
+        <div class="text">
+          No core courses. Driven by your interests, you can mix and match your courses for the semester</div>
         </div>
-        <div class="col-md-9" id="content">
-            <li>Free slots in between. </li>
-            <li>Preferred classrooms. </li>
-            <li>...</li>
-            <li>...</li>
+      </div>
+      <br>
+      <h3 class="h3"> - OPTIONAL -</h3>
+      <div class="flex-container">
+        <div class="box">
+        <img src="/images/runner.jpg" id="imgic">
+        <h3> Need a break?</h3>
+        <div class="text">Choose a number of free slots for a weekly basis and take a breather during your courseload</div>
         </div>
-    </div>
+        <div class="box">
+          <img src="/images/class.png" id="imgic"> 
+        <h3> Preffered classrooms</h3>
+        <div class="text">
+          A block too far? Or a floor too far up? Let's help you customize accordingly
+        </div>
+      </div>
 </div>
-
 <%- include ("./partials/footer") %>
