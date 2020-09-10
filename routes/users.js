@@ -5,8 +5,7 @@ router.get("/", function(req,res){
   res.render("users/login");
 });
 
-router.get("/register", function(req,res){
-  res.render("users/register");
+router.get("/admin", function(req,res){
+  res.render("users/adminLogin");
 });
-
 module.exports = router;

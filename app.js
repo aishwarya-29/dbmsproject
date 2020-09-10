@@ -21,6 +21,13 @@ app.use(indexRouter);
 app.use('/users', usersRouter);
 
 
+app.get("/view", function(req,res){
+  res.render("view/index");
+});
+
+app.post("/login", function(req,res){
+  res.redirect("/view");
+})
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

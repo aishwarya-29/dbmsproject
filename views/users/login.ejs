@@ -10,7 +10,7 @@
     </div>
     <div class="dummy">
     <div class="login" id="option2">
-        <form style="padding-top: 100px;">
+        <form style="padding-top: 100px;"  action='/login' method="POST">
             <label for="email">EMAIL</label>
             <div class="form-group">
                 <input type="text" name="email" id="email">
@@ -19,10 +19,11 @@
             <div class="form-group">
                 <input type="password" name="password" id="password">
             </div>
-            <div><button class="btn btn-dark" type="submit" class="submit-btn">Login</button>  <span id="temp">or</span> <a id="toggle">Sign Up</a> </div>
+            <button class="btn btn-dark" class="submit-btn">Login</button>  <span id="temp">or</span> <a id="toggle">Sign Up</a> 
         </form>
         <div class="container" id="options">
-            <a>Forgot password?</a>
+            <a>Forgot password?</a> <br>
+            <a href="/users/admin">Admin Login</a>
         </div>
     </div>
     <div class="login" id="option3">
@@ -43,7 +44,7 @@
             <div class="form-group">
                 <input type="password" name="password2" id="password2">
             </div>
-            <div><button class="btn btn-dark" type="submit" class="submit-btn">Register</button>  <span id="temp">or</span> <a id="toggle2">Sign In</a> </div>
+            <button type="submit" class="btn btn-dark" >Register</button>  <span id="temp">or</span> <a id="toggle2">Sign In</a> 
         </form>
         </div>
 </div>

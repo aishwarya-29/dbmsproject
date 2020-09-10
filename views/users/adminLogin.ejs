@@ -1,0 +1,24 @@
+<%- include ("../partials/header") %>
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/users/login.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/users/adminLogin.css">
+</head>
+<div class="login">
+    <h3>ADMIN LOGIN</h3>
+    <form style="padding-top: 100px;">
+        <label for="email">EMAIL</label>
+        <div class="form-group">
+            <input type="text" name="email" id="email">
+        </div>
+        <label for="password">PASSWORD</label>
+        <div class="form-group">
+            <input type="password" name="password" id="password">
+        </div>
+        <div><button class="btn btn-dark" type="submit" class="submit-btn">Login</button> </div>
+    </form>
+    <div class="container" id="options">
+        <a>Forgot password?</a>
+    </div>
+</div>
+
+<%- include ("../partials/footer") %>
