@@ -17,7 +17,7 @@
 }
 .carousel-item {
     height: fit-content;
-    min-height: 350px;
+    min-height: fit-content;
     width: 100%;
     padding: 4% 5% 5% 5%;
     background-color: #A8DADC;
@@ -32,7 +32,7 @@
     color:#1D3557;
 }
 
-#form1 {
+form {
     text-align: center;
     font-weight: bold;
 }
@@ -60,3 +60,27 @@ input:focus {
     background-color: #1D3557; 
     font-family: 'Rubik', sans-serif;
 }
+
+.dep,.build {
+    margin: 2px;
+    width: 300px !important;
+}
+
+table {
+    background-color: white;
+}
+
+thead {
+    background-color: #F1FAEE;
+}
+
+.checkbox{
+    background-color: white;
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+}
+
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none !important;
+ }

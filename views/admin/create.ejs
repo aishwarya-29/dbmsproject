@@ -25,6 +25,7 @@
           <li data-target="#car" data-slide-to="0" class="active"></li>
           <li data-target="#car" data-slide-to="1"></li>
           <li data-target="#car" data-slide-to="2"></li>
+          <li data-target="#car" data-slide-to="3"></li>
         </ul>
       
         <!-- The slideshow -->
@@ -61,10 +62,91 @@
               <button class="btn btn-dark nextbtn" href="#car" data-slide="next">Next</button>
           </div>
           <div class="carousel-item">
+            <h2>2. Campus Structure</h2> <br>
+            <form id="form2">
+              <div class="row">
+                <div class="col-sm-6">
+                  <label>How many departments?</label>
+                  <input class="form-control" id="numofdepartments" name="numofdepartments" type="number" min="1" max="10">
+                </div>
+                <div class="col-sm-6">
+                  <label>How many buildings?</label>
+                  <input class="form-control" id="numofbuildings" name="numofbuildings" type="number" min="1" max="10">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6" id="departments">
+
+                </div>
+                <div class="col-sm-6" id="buildings">
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <label>How many classrooms?</label>
+                  <input class="form-control" id="numofclassrooms" name="numofclassrooms" type="number" min="1" max="40">
+                </div>
+                <div class="col-sm-6">
+                  <label>How many labs?</label>
+                  <input class="form-control" id="numoflabs" name="numoflabs" type="number" min="1" max="20">
+                </div>
+              </div>
+            </form>
+            <button class="btn btn-dark nextbtn" href="#car" data-slide="next">Next</button>
           </div>
           <div class="carousel-item">
-          </div>
+            <h2>3. Faculty Information</h2> <br>
+            <button class="btn btn-sm btn-info" style="float: right; margin-bottom: 3px;" id="add-teacher"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+            <table class="table" id="table">
+              <thead>
+                <th>Faculty ID</th>
+                <th>Name</th>
+                <th>E-mail</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input type="text" class="form-control teacher-id" placeholder="Faculty ID"></td>
+                  <td><input type="text" class="form-control teacher-name" placeholder="Faculty Name"></td>
+                  <td><input type="text" style="width: 350px !important" class="form-control teacher-email" placeholder="Email ID"></td>
+                </tr>
+              </tbody>
+            </table>
+            <button class="btn btn-dark nextbtn" href="#car" data-slide="next">Next</button>
         </div>
+        <div class="carousel-item">
+          <h2>4. Course Information</h2> <br>
+          <button class="btn btn-sm btn-info" style="float: right; margin-bottom: 3px;" id="add-course"><i class="fa fa-plus" aria-hidden="true"></i> Add</button>
+          <table class="table" id="table2">
+            <thead>
+              <th>Course ID</th>
+              <th>Course Name</th>
+              <th>Credits</th>
+              <th>Type</th>
+              <th>Elective</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="text" class="form-control course-id" placeholder="Course ID"></td>
+                <td><input type="text" class="form-control course-name" placeholder="Name"></td>
+                <td><input type="number" class="form-control course-credits" min="1" max="9"></td>
+                <td>
+                  <select class="form-control course-theory-or-lab" name="course-theoryorlab" id="course-theoryorlab">
+                    <option value="theory">Theory</option>
+                    <option value="lab">Lab</option>
+                    <option value="both">Both</option>
+                  </select>
+                </td>
+                <td>
+                  <label class="checkbox form-control-lg"><input type="checkbox" value=""></label>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+          <button class="btn btn-dark" id="submit-btn" >Submit</button>
+      </div>
+
       
         <!-- Left and right controls -->
         <a class="carousel-control-prev" href="#car" data-slide="prev">
@@ -78,3 +160,4 @@
 </div>
 
 <%- include ("../partials/footer") %>
+<script type="text/javascript" src="../javascripts/admin/create.js"></script>
