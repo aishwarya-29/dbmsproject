@@ -1,0 +1,80 @@
+<%- include ("../partials/header") %>
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/admin/create.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<div class="container" id="create">
+    <h1>Creation of Timetable</h1> <br>
+    <p>
+        You can create a brand new timetable by entering the following details. 
+        Please note that the algorithm creates a basic time table which can be modified later on.
+        After the creation of the timetable, you will be required to enter the student database. 
+        We have a number of options you can do this with - 
+            <li>Upload JSON document</li>
+            <li>Upload CSV document</li>
+            <li>Manually enter all the details</li>
+    </p>
+    <h6><span id="note">Note:</span> Only proceed when you have all the data required. Incomplete data 
+    will lead to an error in creation of the timetable. </h6>
+    <br>
+    <div id="car" class="carousel slide" data-interval="false">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+          <li data-target="#car" data-slide-to="0" class="active"></li>
+          <li data-target="#car" data-slide-to="1"></li>
+          <li data-target="#car" data-slide-to="2"></li>
+        </ul>
+      
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+              <h2>1. Structure of Timetable</h2> <br>
+              <form id="form1">
+                  <div class="row">
+                      <div class="col-sm-6">
+                        <label>How many days in a week?</label> 
+                        <input class="form-control" type="number" id="daysinweek" name="daysinweek" min="1" max="7">
+                      </div>
+                    <div class="col-sm-6">
+                        <label>How many hours in a day?</label>
+                        <input class="form-control" type="number" id="hoursinday" name="hoursinday" min=2 max=16>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-6">
+                        <label>Lunch break</label>
+                        <input class="form-control" type="time" id="lunchstart" name="lunchstart"> -
+                        <input class="form-control" type="time" id="lunchend" name="lunchend">
+                      </div>
+                      <div class="col-sm-6">
+                          <label>Theory/Lab  </label>
+                          <select class="form-control" name="theoryorlab" id="theoryorlab">
+                            <option value="theory">Theory</option>
+                            <option value="lab">Lab</option>
+                            <option value="both">Both</option>
+                          </select>
+                      </div>
+                  </div>
+              </form> <br>
+              <button class="btn btn-dark nextbtn" href="#car" data-slide="next">Next</button>
+          </div>
+          <div class="carousel-item">
+          </div>
+          <div class="carousel-item">
+          </div>
+        </div>
+      
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#car" data-slide="prev">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+        <a class="carousel-control-next" href="#car" data-slide="next">
+            <i class="fas fa-chevron-right"></i>
+        </a>
+      
+      </div>
+</div>
+
+<%- include ("../partials/footer") %>

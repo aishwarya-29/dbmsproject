@@ -1,0 +1,62 @@
+#create h1 {
+    color: #457B9D;
+    font-family: 'Rubik', sans-serif;
+}
+
+#create {
+    font-family: 'Montserrat', sans-serif;
+}
+
+#note {
+    color: #E63946;
+}
+#car {
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),
+        0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    margin-bottom: 5%;
+}
+.carousel-item {
+    height: fit-content;
+    min-height: 350px;
+    width: 100%;
+    padding: 4% 5% 5% 5%;
+    background-color: #A8DADC;
+}
+
+.carousel-control-prev, .carousel-control-next {
+    width: 5%;
+}
+
+.carousel-item h2 {
+    font-family: 'Rubik', sans-serif;
+    color:#1D3557;
+}
+
+#form1 {
+    text-align: center;
+    font-weight: bold;
+}
+
+input, select {
+    display: inline-block !important;
+    width: min-content !important;
+}
+
+.row {
+    margin-top: 10px;
+}
+label {
+    background-color: #F1FAEE;
+    padding: 1%;
+    border-radius: 10px;
+}
+
+input:focus {
+    border: none;
+}
+
+.nextbtn {
+    float: right; 
+    background-color: #1D3557; 
+    font-family: 'Rubik', sans-serif;
+}
