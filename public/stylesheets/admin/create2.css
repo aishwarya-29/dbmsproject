@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap');
+#note {
+    color: #E63946;
+}
+h2 {
+    color: #457B9D;
+    font-family: 'Rubik', sans-serif;
+}
+h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.info {
+    min-height: 400px;
+    background-color: #F1FAEE;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),
+        0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.title, .details {
+    padding: 2% 4%;
+}
+
+.number {
+    font-size: 6rem;
+    height: 100%;
+}
+
+.title {
+    background-image: url('/images/bg1.jpg');
+    background-size: contain;
+    color: white;
+    font-family: 'Rubik', sans-serif;
+}
+
+.details {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.details h1 {
+    font-family: 'Rubik', sans-serif;
+    color:#1D3557;
+}
+
+.check {
+    margin-right: 5%;
+}
+
+
+.facultyList {
+    display: inline-block;
+    width: max-content;
+}
+
+input[type=number] {
+    display: inline;
+    width: 100px;
+}
+
+.course {
+    display: inline-block;
+    background-color: #1D3557;
+    color: white;
+    padding: 3px 5px;
+    margin: 3px;
+    margin-top: 10px !important;
+}
+
+.delete {
+    color: gray;
+    cursor: pointer;
+}
+
+.courseList {
+    width: max-content;
+}
+
+.fac-course {
+    margin-top: 10px;
+}

@@ -1,0 +1,132 @@
+<%- include ("../partials/header") %>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/admin/create2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
+</head>
+
+<div class="container">
+    <h2>Congratulations! 🥳 You have finished the first step towards creating your brand new timetable.</h2>
+    <br>
+    <h6>We need you to fill out a few more details in order to understand the structure 
+        of the timetable. Be sure to keep all the details ready and fill out all the necessary
+        details in the below forms.
+    </h6>
+    <h6><span id="note">Note:</span> Only proceed when you have all the data required. Incomplete data 
+        will lead to an error in creation of the timetable. </h6>
+    <br><br>
+    <div class="container info" id="info1">
+        <div class="row">
+            <div class="col-sm-2 title text-center">
+                <span class="number"><strong>1</strong></span> <br> <br>
+            </div>
+            <div class="col-sm-10    details">
+                <h1>Buildings & Departments</h1> <br>
+                <p>Specify which buildings belong to which department and number of classrooms & labs in each building.
+                   Make sure you are in accordance with the total number of classrooms and labs specified. 
+                </p> <br>
+                <form id="buildingAndDepartment">
+                    <ol>
+                    <% buildings.forEach(function(building) { %>
+                            <li><label><strong><%= building.name %></strong></label></li>
+                            <%departments.forEach(function(department){ %>
+                                <label for="check<%= department.name %>"><%=department.name %></label>
+                                <input type="checkbox" class="check" id="check<%= department.name %>">
+                            <% }); %> <br>
+                            <div class="row">
+                            <div class="col-md-6">
+                                <label>How many classrooms?</label>
+                                <input class="form-control" id="numofdepartments" name="numofdepartments" type="number" min="1" max="10">
+                            </div>
+                            <div class="col-md-6">
+                                <label>How many labs?</label>
+                                <input class="form-control" id="numofbuildings" name="numofbuildings" type="number" min="1" max="10">
+                            </div>
+                            </div>
+                                <br>
+                                <br>
+                    <% }) %>
+                    </ol>
+                    <h6><span id="note">Note: </span>Classrooms and labs will be named according to the building name. <br> 
+                        e.g. Building 1 - B1 <br>
+                             Classrooms - B1-C1, B2-C2 etc.
+                    </h6>
+                </form>
+            </div>
+        </div>
+    </div> 
+    <br>
+    <div class="container info" id="info2">
+        <div class="row">
+            <div class="col-sm-10    details">
+                <h1>Department Heads</h1> <br>
+                <p>Assign a faculty as the Head of a Department. </p> <br>
+                <form id="departmentHeads">
+                    <ol>
+                        <%departments.forEach(function(department){ %>
+                            <li><label><strong><%= department.name %> -</strong> </label>
+                            <input class="facultyList form-control" type="text"> <br><br> </li>
+                        <% }); %>
+                    </ol>
+                </form>
+            </div>
+            <div class="col-sm-2 title text-center">
+                <span class="number"><strong>2</strong></span> <br> <br>
+            </div>
+        </div>
+    </div> <br>
+    <div class="container info" id="info3">
+        <div class="row">
+            <div class="col-sm-2 title text-center">
+                <span class="number"><strong>3</strong></span> <br> <br>
+            </div>
+            <div class="col-sm-10    details">
+                <h1>Faculty & Courses</h1> <br>
+                <p>Specify courses taught by each faculty.</p>
+                <form id="facultyAndCourses">
+                    <ol>
+                    <% faculties.forEach(function(faculty){ %>
+                        <div class="row fac-course">
+                            <div class="col-md-4" style="height: fit-content;">
+                                <li><strong><%= faculty.fullName %></strong></li>
+                                <input type="text" class="form-control courseList" id="<%= faculty.id %>-course"> <br>
+                            </div>
+                            <div class="col-md-8" id="<%= faculty.id %>-courselist">
+                            </div>
+                        </div>
+                    <% }) %>
+                    </ol>
+                </form>
+            </div>
+        </div>
+    </div> <br>
+    <div class="container info" id="info4">
+        <div class="row">
+            <div class="col-sm-10    details">
+                <h1>Course Mentors</h1> <br>
+                <p>Sepcify mentors of each course. </p> <br>
+                <form id="departmentHeads">
+                    <ol>
+                        <%courses.forEach(function(course){ %>
+                            <li><label><strong><%= course.name %> -</strong> </label>
+                            <input type="text" class="form-control facultyList"> <br> <br>
+                            </li>
+                        <% }); %>
+                    </ol>
+                </form>
+            </div>
+            <div class="col-sm-2 title text-center">
+                <span class="number"><strong>4</strong></span> <br> <br>
+            </div>
+        </div>
+    </div>  <br><br><br><br>
+    <a href="/admin/create/step-3"><button class="special-btn">Next</button></a>
+    <br><br><br><br><br><br>
+</div>
+
+
+<%- include ("../partials/footer") %>
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript" src="/javascripts/admin/create2.js"></script>

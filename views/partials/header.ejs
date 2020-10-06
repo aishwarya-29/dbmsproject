@@ -27,7 +27,11 @@
                     <a class="nav-link" href="/about">About</a>
                 </li>
                 <li class="nav-item pop">
-                    <a href="/users" class="nav-link">User</a>
+                    <% if(username) { %>
+                        <a href="/users" class="nav-link"><%=username%></a>
+                    <% } else { %>
+                        <a href="/users" class="nav-link">User</a>
+                    <% } %>
                 </li>
             </ul>
         </div>

@@ -34,3 +34,98 @@ body {
   margin-bottom: 7px;
   margin-right: 5px;
 }
+
+.nav-link {
+  overflow: hidden;
+    white-space: nowrap;
+}
+
+.special-btn {
+  border: none;
+  background: #1D3557;
+  color: #ffffff !important;
+  font-weight: 100;
+  padding: 20px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  display: inline-block;
+  transition: all 0.3s ease 0s;
+  margin: auto;
+  margin: 0 auto; 
+  display: block;
+}
+.special-btn:hover,
+.special-btn:focus {
+  color: #1D3557 !important;
+  font-weight: 700 !important;
+  letter-spacing: 3px;
+  background-color: #F1FAEE;
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.3s ease 0s;
+}
+
+.ui-helper-hidden-accessible { display:none; }
+
+
+.ui-autocomplete {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 10px 0;
+    margin: 2px 0 0;
+    list-style: none;
+    font-size: 14px;
+    text-align: left;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    background-clip: padding-box;
+  }
+  
+  .ui-autocomplete > li > div {
+    display: block;
+    padding: 10px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.72857143;
+    white-space: nowrap;
+    color: black !important;
+  }
+  
+  .ui-helper-hidden-accessible {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+.ui-state-hover,
+.ui-state-active,
+.ui-state-focus {
+    font-weight: bold;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+  
+  a {
+      color: black !important;
+      text-decoration: none !important;
+  }
+
+  .ui-corner-all {
+    font-family: 'Montserrat', sans-serif !important;
+    margin-left: 3px;
+    padding: 10px 0px;
+  }

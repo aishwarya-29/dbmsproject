@@ -1,0 +1,103 @@
+h2,h3 {
+    color: #457B9D;
+    font-family: 'Rubik', sans-serif;
+}
+
+.class {
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2),
+        0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-radius: 25px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.head {
+    background-color: #1D3557;
+    border-radius: 25px 25px 0px 0px;
+    text-align: center;
+    color: white;
+    padding: 1% 0%;
+}
+
+input[type=text] {
+    width: max-content;
+}
+
+input[type=number] {
+    width: max-content;
+}
+
+.classinfo {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 3% 0%;
+}
+
+label {
+    padding: 2% 3%;
+    font-weight: bold;
+    color: #1D3557;
+    height: 20px;
+}
+
+input {
+    border-radius: 0px !important;
+    height: 35px !important;
+}
+
+.item {
+    margin: 1% 5%;
+}
+
+.course {
+    display: inline-block;
+    background-color: #F1FAEE;
+    padding: 3px 5px;
+    margin: 3px;
+    margin-top: 10px !important;
+}
+
+.delete {
+    color: black;
+    cursor: pointer;
+}
+
+.item {
+    align-self: flex-start;
+    background-color: #A8DADC;
+}
+
+.float-left {
+    margin-right: 100px;
+}
+
+.class-course {
+    background-color: #A8DADC;
+    padding: 3%;
+}
+
+.courseList {
+    border: none;
+}
+
+.form-control {
+    border: 2px solid #A8DADC;
+}
+
+.form-control:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  #addbtn {
+      float: right;
+      background-color: #E63946;
+      border: none;
+  }
+
+.deleteclass {
+    margin-right: 13px;
+    display: none;
+}

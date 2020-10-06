@@ -1,0 +1,67 @@
+<%- include ("../partials/header") %>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/admin/create3.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap" rel="stylesheet">
+</head>
+
+<div class="container">
+    <% var i = 0; %>
+    <h2>Woohoo! You're almost done. 🥳 </h2>
+    <h3>Fill up the follwing form regarding the class and details about each class. </h3><br>
+    <div class="classlist">
+        <div class="containe class" id="class1">
+            <% i+=1; %>
+            <div class="head">
+                Class <%= i %>
+            </div>
+            <div class="classinfo">
+                <div class="item">
+                    <label>Name/ID</label>
+                    <input class="form-control" type="text">
+                </div>
+                <div class="item">
+                    <label>Year</label>
+                    <input class="form-control" type="number">
+                </div>
+                <div class="item">
+                    <label>Section</label>
+                    <input class="form-control" type="text">
+                </div>
+                <div class="item">
+                    <label>Strength</label>
+                    <input class="form-control" type="number">
+                </div>
+                <div class="item">
+                    <label>Department</label>
+                    <input class="form-control departmentList" type="text">
+                </div>
+                <div class="item">
+                    <label>Default Building</label>
+                    <input class="form-control buildingList" type="text">
+                </div>
+                <div class="item">
+                    <label>Class Advisor</label>
+                    <input class="form-control facultyList" type="text">
+                </div>
+                <div class="item class-course">
+                        <div class="float-left">
+                            <label>Courses</label>
+                            <input type="text" class="form-control courseList" id="1-courselist">
+                        </div>
+                        <div class="float-right" id="1-listofcourses">
+                            
+                        </div>
+                </div>
+            </div>
+        </div> <br>
+    </div>
+    <br><button class="btn btn-sm btn-info" id="addbtn"><i class="fa fa-plus" aria-hidden="true"></i> Add</button> <br><br><br>
+</div>
+
+
+<%- include ("../partials/footer") %>
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript" src="/javascripts/admin/create3.js"></script>
