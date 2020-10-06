@@ -3,10 +3,10 @@ var mongoose = require('mongoose');
 var buildingSchema = mongoose.Schema({
     id: String,
     name: String,
-    department: {
+    departments: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Department"
-    },
+    }],
     numberOfClassrooms: Number,
     numberOfLabs: Number,
     classrooms: [{
@@ -16,7 +16,9 @@ var buildingSchema = mongoose.Schema({
     labs: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Labs"
-    }]
+    }],
+    numberOfClassrooms: Number,
+    numberOfLabs: Number
 });
 
 module.exports = mongoose.model("Building", buildingSchema);

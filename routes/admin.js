@@ -105,6 +105,94 @@ router.get("/create/step-2", function(req,res){
   
 })
 
+router.post("/create/step-2", function(req,res){
+    var formData = req.body;
+    console.log(formData);
+    
+    var buildingInfo = formData.buildingInfo;
+    buildingInfo.forEach(function(buildInfo){
+        Building.findOneAndUpdate({name:buildInfo.name}, function(err,build){
+            if(err)
+                console.log(err);
+            else {
+                build.departments = [];
+                for(var i=0; i<buildInfo.departments.length; i++) {
+                    Department.find({name: buildInfo.departments[i]}, function(err, department){
+                        if(err)
+                            console.log(err);
+                        else 
+                            build.departments.push(department._id);
+                    });
+                }
+                build.numberOfClassrooms = buildInfo.numOfClassroom;
+                build.numberOfLabs = buildInfo.numOfLab;
+            }
+        });
+    });
+
+    var departmentHeads = formData.departmentHeads;
+    for(var i=0;i<departmentHeads.length;i++) {
+        var depName = departmentHeads[i][0];
+        var facName = departmentHeads[i][1];
+        Department.findOneAndUpdate({name: depName}, function(err, department){
+            if(err)
+                console.log(err);
+            else {
+                Faculty.find({fullName: facName}, function(err,faculty){
+                    if(err)
+                        console.log(err);
+                    else {
+                        department.departmentHead = faculty._id;
+                    }
+                });
+            }
+        });
+    }
+
+    var courseMentor = formData.courseMentor;
+    for(var i=0; i<courseMentor.length; i++) {
+        var courseName = courseMentor[i][0];
+        var facName = courseMentor[i][1];
+        Course.findOneAndUpdate({name: courseName}, function(err, course){
+            if(err)
+                console.log(err);
+            else {
+                Faculty.find({name: facName}, function(err, faculty){
+                    if(err)
+                        console.log(err);
+                    else {
+                        course.courseMentor = faculty._id;
+                    }
+                });
+            }
+        });
+    }
+
+    var facultyCourses = formData.facultyCourses;
+    facultyCourses.forEach(function(facCourse){
+        Faculty.findOneAndUpdate({id:facCourse.id}, function(err, faculty){
+            if(err)
+                console.log(err);
+            else {
+                faculty.courses = [];
+                for(var i=0; i<facCourse.courses.length;i++) {
+                    var cname = facCourse.courses[i];
+                    Course.find({name: cname}, function(err, course){
+                        if(err)
+                            console.log(err);
+                        else {
+                            faculty.courses.push(course._id);
+                            faculty.save(function(){});
+                        }
+                    });
+                }
+            }
+        });
+    });
+
+    return res.send(formData);
+});
+
 router.get("/create/step-3", function(req,res){
     var departments, buildings;
     Department.find({}, function(err, allDepartments){

@@ -29,21 +29,23 @@
                 <form id="buildingAndDepartment">
                     <ol>
                     <% buildings.forEach(function(building) { %>
-                            <li><label><strong><%= building.name %></strong></label></li>
+                            <li id="<%=building._id%>-1"><label><strong><%= building.name %></strong></label>
+                                <br>
                             <%departments.forEach(function(department){ %>
-                                <label for="check<%= department.name %>"><%=department.name %></label>
-                                <input type="checkbox" class="check" id="check<%= department.name %>">
+                                <label><%=department.name %></label>
+                                <input type="checkbox" id="<%=building.name%>-<%=department.name%>" class="check">
                             <% }); %> <br>
                             <div class="row">
                             <div class="col-md-6">
                                 <label>How many classrooms?</label>
-                                <input class="form-control" id="numofdepartments" name="numofdepartments" type="number" min="1" max="10">
+                                <input class="form-control" id="<%=building.name%>-numOfClassroom" type="number" min="1" max="10">
                             </div>
                             <div class="col-md-6">
                                 <label>How many labs?</label>
-                                <input class="form-control" id="numofbuildings" name="numofbuildings" type="number" min="1" max="10">
+                                <input class="form-control" id="<%=building.name%>-numOfLab" type="number" min="1" max="10">
                             </div>
                             </div>
+                            </li>
                                 <br>
                                 <br>
                     <% }) %>
@@ -66,7 +68,7 @@
                     <ol>
                         <%departments.forEach(function(department){ %>
                             <li><label><strong><%= department.name %> -</strong> </label>
-                            <input class="facultyList form-control" type="text"> <br><br> </li>
+                            <input class="facultyList form-control" type="text" id="<%=department.name%>-head"> <br><br> </li>
                         <% }); %>
                     </ol>
                 </form>
@@ -110,7 +112,7 @@
                     <ol>
                         <%courses.forEach(function(course){ %>
                             <li><label><strong><%= course.name %> -</strong> </label>
-                            <input type="text" class="form-control facultyList"> <br> <br>
+                            <input type="text" class="form-control facultyList" id="<%=course.name%>-mentor"> <br> <br>
                             </li>
                         <% }); %>
                     </ol>
