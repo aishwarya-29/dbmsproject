@@ -139,7 +139,7 @@ $('.courseList').keypress(function(event){
         else if(courseList.includes(coursename)) {
             var id = $(this).attr('id');
             id = id.split("-")[0];
-            $('#'+ id+'-courselist').append('<span class="course '+id+'-course">'+coursename+' <span class="delete"><i class="fas fa-times fa-xs"></i></span></span> ')
+            $('#'+ id+'-courselist').append('<span class="course '+id+'-course">'+coursename+'<span class="delete"> <i class="fas fa-times fa-xs"></i></span></span> ')
             $('.delete').click(function(){
                 $(this).parent().remove();
             });            
@@ -187,10 +187,13 @@ $('.special-btn').click(function(){
         facultyCourse.id = id;
         facultyCourse.courses = [];
         $('.'+id+'-course').each(function(){
-            facultyCourse.courses.push($(this).text());
+            var str = $(this).text();
+            str = str.substring(0,str.length-1);
+            facultyCourse.courses.push(str);
         });
         facultyCourses.push(facultyCourse);
     });
+
 
     var formData = {
         buildingInfo: buildingInfo,
@@ -204,7 +207,6 @@ $('.special-btn').click(function(){
         url: '/admin/create/step-2',
         data: JSON.stringify(formData),
         success: function (data) {
-            alert("sucess");
         },
         error: function (e) {
             alert("Error!")

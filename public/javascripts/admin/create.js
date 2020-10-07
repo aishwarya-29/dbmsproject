@@ -125,7 +125,6 @@ $('#submit-btn').click(function(){
         url: '/admin/create',
         data: JSON.stringify(formData),
         success: function (data) {
-            alert("sucess");
         },
         error: function (e) {
             alert("Error!")

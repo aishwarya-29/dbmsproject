@@ -2,11 +2,17 @@ var mongoose = require('mongoose');
 
 var classSchema = mongoose.Schema({
     name: String,
+    year: Number,
+    section: String,
+    strength: Number,
     department: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Department"
     },
-    section: String,
+    defaultBuilding: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Building"
+    },
     classAdvisor: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Faculty"

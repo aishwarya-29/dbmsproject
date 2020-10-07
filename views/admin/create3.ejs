@@ -7,43 +7,41 @@
 </head>
 
 <div class="container">
-    <% var i = 0; %>
     <h2>Woohoo! You're almost done. 🥳 </h2>
     <h3>Fill up the follwing form regarding the class and details about each class. </h3><br>
     <div class="classlist">
         <div class="containe class" id="class1">
-            <% i+=1; %>
             <div class="head">
-                Class <%= i %>
+                Class 1
             </div>
             <div class="classinfo">
                 <div class="item">
                     <label>Name/ID</label>
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" id="class1-name">
                 </div>
                 <div class="item">
                     <label>Year</label>
-                    <input class="form-control" type="number">
+                    <input class="form-control" type="number" id="class1-year">
                 </div>
                 <div class="item">
                     <label>Section</label>
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" id="class1-section">
                 </div>
                 <div class="item">
                     <label>Strength</label>
-                    <input class="form-control" type="number">
+                    <input class="form-control" type="number" id="class1-strength">
                 </div>
                 <div class="item">
                     <label>Department</label>
-                    <input class="form-control departmentList" type="text">
+                    <input class="form-control departmentList" type="text" id="class1-department">
                 </div>
                 <div class="item">
                     <label>Default Building</label>
-                    <input class="form-control buildingList" type="text">
+                    <input class="form-control buildingList" type="text" id="class1-building">
                 </div>
                 <div class="item">
                     <label>Class Advisor</label>
-                    <input class="form-control facultyList" type="text">
+                    <input class="form-control facultyList" type="text" id="class1-advisor">
                 </div>
                 <div class="item class-course">
                         <div class="float-left">
@@ -58,6 +56,8 @@
         </div> <br>
     </div>
     <br><button class="btn btn-sm btn-info" id="addbtn"><i class="fa fa-plus" aria-hidden="true"></i> Add</button> <br><br><br>
+    <br><br>
+    <a><button class="special-btn">Submit</button></a>
 </div>
 
 

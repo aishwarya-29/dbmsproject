@@ -24,56 +24,55 @@ router.get("/create", function(req,res){
 
 router.post("/create", function(req,res){
     var formData = req.body;
-    console.log(formData);
     var object = {
         something: "doneee"
     };
-    TimetableStructure.create({
-        daysInWeek: formData.daysInWeek,
-        hoursInDay: formData.hoursInDay,
-        lunchBreakStart: formData.lunchBreakStart,
-        lunchBreakEnd: formData.lunchBreakEnd,
-        numOfDepartments: formData.numOfDepartments,
-        numOfBuildings: formData.numOfBuildings,
-        numOfClassrooms: formData.numOfClassrooms,
-        numOfLabs: formData.numOfLabs,
-        admin: req.user._id
-    }, function(err, obj){
-        if(err)
-            console.log(err);
-        else {
-            console.log("created!");
-            object = obj;
-        }
-    });
-    var departments = formData.departments;
-    for(var i=0;i<departments.length;i++) {
-        Department.create({name: departments[i]});
-    }
-    var buildings = formData.buildings;
-    for(var i=0;i<buildings.length;i++) {
-        Building.create({name: buildings[i]});
-    }
+    // TimetableStructure.create({
+    //     daysInWeek: formData.daysInWeek,
+    //     hoursInDay: formData.hoursInDay,
+    //     lunchBreakStart: formData.lunchBreakStart,
+    //     lunchBreakEnd: formData.lunchBreakEnd,
+    //     numOfDepartments: formData.numOfDepartments,
+    //     numOfBuildings: formData.numOfBuildings,
+    //     numOfClassrooms: formData.numOfClassrooms,
+    //     numOfLabs: formData.numOfLabs,
+    //     admin: req.user._id
+    // }, function(err, obj){
+    //     if(err)
+    //         console.log(err);
+    //     else {
+    //         console.log("created!");
+    //         object = obj;
+    //     }
+    // });
+    // var departments = formData.departments;
+    // for(var i=0;i<departments.length;i++) {
+    //     Department.create({name: departments[i]});
+    // }
+    // var buildings = formData.buildings;
+    // for(var i=0;i<buildings.length;i++) {
+    //     Building.create({name: buildings[i]});
+    // }
 
-    var faculties = formData.facultyInformation;
-    faculties.forEach(faculty => {
-        Faculty.create({
-            id: faculty.id,
-            fullName: faculty.name,
-            emailID: faculty.email
-        });
-    });
+    // var faculties = formData.facultyInformation;
+    // faculties.forEach(faculty => {
+    //     Faculty.create({
+    //         id: faculty.id,
+    //         fullName: faculty.name,
+    //         emailID: faculty.email
+    //     });
+    // });
 
-    var courses = formData.courseInformation;
-    courses.forEach(course => {
-        Course.create({
-            id: course.id,
-            name: course.name,
-            credits: course.credits,
-            type: course.theoryorlab,
-            elective: course.elective
-        });
-    });
+    // var courses = formData.courseInformation;
+    // courses.forEach(course => {
+    //     Course.create({
+    //         id: course.id,
+    //         name: course.name,
+    //         credits: course.credits,
+    //         type: course.theoryorlab,
+    //         elective: course.elective
+    //     });
+    // });
     return res.send(object);
 });
 
@@ -107,25 +106,34 @@ router.get("/create/step-2", function(req,res){
 
 router.post("/create/step-2", function(req,res){
     var formData = req.body;
-    console.log(formData);
     
     var buildingInfo = formData.buildingInfo;
     buildingInfo.forEach(function(buildInfo){
-        Building.findOneAndUpdate({name:buildInfo.name}, function(err,build){
+        for(var i=0; i<buildInfo.departments.length;i++) {
+            var name = buildInfo.departments[i];
+            Department.findOne({name: name}, function(err, department){
+                if(err)
+                    console.log(err);
+                else {
+                    Building.findOne({name:buildInfo.name}, function(err, build){
+                        if(err)
+                            console.log(err);
+                        else {
+                            build.departments.push(department);
+                            build.save();
+                        }
+                    });
+                }
+            });
+        }
+
+        Building.findOne({name:buildInfo.name}, function(err,build){
             if(err)
                 console.log(err);
             else {
-                build.departments = [];
-                for(var i=0; i<buildInfo.departments.length; i++) {
-                    Department.find({name: buildInfo.departments[i]}, function(err, department){
-                        if(err)
-                            console.log(err);
-                        else 
-                            build.departments.push(department._id);
-                    });
-                }
                 build.numberOfClassrooms = buildInfo.numOfClassroom;
                 build.numberOfLabs = buildInfo.numOfLab;
+                build.save();
             }
         });
     });
@@ -134,15 +142,20 @@ router.post("/create/step-2", function(req,res){
     for(var i=0;i<departmentHeads.length;i++) {
         var depName = departmentHeads[i][0];
         var facName = departmentHeads[i][1];
-        Department.findOneAndUpdate({name: depName}, function(err, department){
+        Department.findOne({name: depName}, function(err, department){
             if(err)
                 console.log(err);
             else {
-                Faculty.find({fullName: facName}, function(err,faculty){
+                for(var j = 0; j< departmentHeads.length;j++)
+                    if(departmentHeads[j][0] == department.name)
+                        facName = departmentHeads[j][1];
+                console.log(facName);
+                Faculty.findOne({fullName: facName}, function(err, faculty){
                     if(err)
                         console.log(err);
                     else {
-                        department.departmentHead = faculty._id;
+                        department.departmentHead = faculty;
+                        department.save();
                     }
                 });
             }
@@ -150,18 +163,23 @@ router.post("/create/step-2", function(req,res){
     }
 
     var courseMentor = formData.courseMentor;
-    for(var i=0; i<courseMentor.length; i++) {
+    for(var i=0;i<courseMentor.length;i++) {
         var courseName = courseMentor[i][0];
-        var facName = courseMentor[i][1];
-        Course.findOneAndUpdate({name: courseName}, function(err, course){
+        var mentorName = courseMentor[i][1];
+        Course.findOne({name: courseName}, function(err, course){
             if(err)
                 console.log(err);
             else {
-                Faculty.find({name: facName}, function(err, faculty){
+                for(var j=0;j<courseMentor.length;j++) {
+                    if(courseMentor[j][0] == course.name)
+                        mentorName = courseMentor[j][1];
+                }
+                Faculty.findOne({fullName: mentorName}, function(err, mentor){
                     if(err)
                         console.log(err);
                     else {
-                        course.courseMentor = faculty._id;
+                        course.courseMentor = mentor;
+                        course.save();
                     }
                 });
             }
@@ -170,24 +188,24 @@ router.post("/create/step-2", function(req,res){
 
     var facultyCourses = formData.facultyCourses;
     facultyCourses.forEach(function(facCourse){
-        Faculty.findOneAndUpdate({id:facCourse.id}, function(err, faculty){
-            if(err)
-                console.log(err);
-            else {
-                faculty.courses = [];
-                for(var i=0; i<facCourse.courses.length;i++) {
-                    var cname = facCourse.courses[i];
-                    Course.find({name: cname}, function(err, course){
+        for(var i=0; i<facCourse.courses.length; i++) {
+            var cname = facCourse.courses[i];
+            Course.findOne({name: cname}, function(err, course){
+                if(err)
+                    console.log(err);
+                else {
+                    console.log(facCourse.id);
+                    Faculty.findOne({id: facCourse.id}, function(err, faculty){
                         if(err)
                             console.log(err);
                         else {
-                            faculty.courses.push(course._id);
-                            faculty.save(function(){});
+                            faculty.courses.push(course);
+                            faculty.save();
                         }
-                    });
+                    })
                 }
-            }
-        });
+            });
+        }
     });
 
     return res.send(formData);
