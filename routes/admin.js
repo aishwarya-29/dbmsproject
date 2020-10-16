@@ -28,52 +28,52 @@ router.post("/create", function(req,res){
     var object = {
         something: "doneee"
     };
-    // TimetableStructure.create({
-    //     daysInWeek: formData.daysInWeek,
-    //     hoursInDay: formData.hoursInDay,
-    //     lunchBreakStart: formData.lunchBreakStart,
-    //     lunchBreakEnd: formData.lunchBreakEnd,
-    //     numOfDepartments: formData.numOfDepartments,
-    //     numOfBuildings: formData.numOfBuildings,
-    //     numOfClassrooms: formData.numOfClassrooms,
-    //     numOfLabs: formData.numOfLabs,
-    //     admin: req.user._id
-    // }, function(err, obj){
-    //     if(err)
-    //         console.log(err);
-    //     else {
-    //         console.log("created!");
-    //         object = obj;
-    //     }
-    // });
-    // var departments = formData.departments;
-    // for(var i=0;i<departments.length;i++) {
-    //     Department.create({name: departments[i]});
-    // }
-    // var buildings = formData.buildings;
-    // for(var i=0;i<buildings.length;i++) {
-    //     Building.create({name: buildings[i]});
-    // }
+    TimetableStructure.create({
+        daysInWeek: formData.daysInWeek,
+        hoursInDay: formData.hoursInDay,
+        lunchBreakStart: formData.lunchBreakStart,
+        lunchBreakEnd: formData.lunchBreakEnd,
+        numOfDepartments: formData.numOfDepartments,
+        numOfBuildings: formData.numOfBuildings,
+        numOfClassrooms: formData.numOfClassrooms,
+        numOfLabs: formData.numOfLabs,
+        admin: req.user._id
+    }, function(err, obj){
+        if(err)
+            console.log(err);
+        else {
+            console.log("created!");
+            object = obj;
+        }
+    });
+    var departments = formData.departments;
+    for(var i=0;i<departments.length;i++) {
+        Department.create({name: departments[i]});
+    }
+    var buildings = formData.buildings;
+    for(var i=0;i<buildings.length;i++) {
+        Building.create({name: buildings[i]});
+    }
 
-    // var faculties = formData.facultyInformation;
-    // faculties.forEach(faculty => {
-    //     Faculty.create({
-    //         id: faculty.id,
-    //         fullName: faculty.name,
-    //         emailID: faculty.email
-    //     });
-    // });
+    var faculties = formData.facultyInformation;
+    faculties.forEach(faculty => {
+        Faculty.create({
+            id: faculty.id,
+            fullName: faculty.name,
+            emailID: faculty.email
+        });
+    });
 
-    // var courses = formData.courseInformation;
-    // courses.forEach(course => {
-    //     Course.create({
-    //         id: course.id,
-    //         name: course.name,
-    //         credits: course.credits,
-    //         type: course.theoryorlab,
-    //         elective: course.elective
-    //     });
-    // });
+    var courses = formData.courseInformation;
+    courses.forEach(course => {
+        Course.create({
+            id: course.id,
+            name: course.name,
+            credits: course.credits,
+            type: course.theoryorlab,
+            elective: course.elective
+        });
+    });
     return res.send(object);
 });
 
