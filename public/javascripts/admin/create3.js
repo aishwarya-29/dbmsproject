@@ -130,7 +130,6 @@ $(document).ready(function(){
     start();
 });
 
-var courseNum = 1;
 
 $(document.body).on('keypress','.courseList',function(event){
 	var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -139,11 +138,9 @@ $(document.body).on('keypress','.courseList',function(event){
         if(coursename == "" || coursename == null)
             alert("Please enter valid name");
         else if(courseList.includes(coursename)) {
-            alert("s");
             var id = $(this).attr('id');
             id = id.split("-")[0];
-            $('#'+id+'-listofcourses').append('<span class="course" id="course'+ courseNum +'">'+coursename+'<span class="delete"> <i class="fas fa-times fa-xs"></i></span></span>');
-            courseNum++;
+            $('#'+id+'-listofcourses').append('<span class="course course-class-'+id+'">'+coursename+'<span class="delete"> <i class="fas fa-times fa-xs"></i></span></span>');
             $(this).val('');
             $('.delete').click(function(){
                 $(this).parent().remove();
@@ -168,18 +165,37 @@ $('.special-btn').click(function(){
     var classes = [];
     for(var i=1;i<=count;i++) {
         var classInfo = {};
-        classInfo.name = $('#class'+count+'-name').val();
-        classInfo.year = $('#class'+count+'-year').val();
-        classInfo.section = $('#class'+count+'-sectiob').val();
-        classInfo.strength = $('#class'+count+'-strength').val();
-        classInfo.department = $('#class'+count+'-department').val();
-        classInfo.build = $('#class'+count+'-building').val();
-        classInfo.advisor = $('#class'+count+'-advisor').val();
+        classInfo.name = $('#class'+i+'-name').val();
+        classInfo.year = $('#class'+i+'-year').val();
+        classInfo.section = $('#class'+i+'-sectiob').val();
+        classInfo.strength = $('#class'+i+'-strength').val();
+        classInfo.department = $('#class'+i+'-department').val();
+        classInfo.build = $('#class'+i+'-building').val();
+        classInfo.advisor = $('#class'+i+'-advisor').val();
         classInfo.courses = [];
-        for(var j=1; j<courseNum;j++) {
-
-        }
+        $('.course-class-'+i).each(function(){
+            var str = $(this).text();
+            str = str.substring(0,str.length-1);
+            classInfo.courses.push(str);
+        });
+        classes.push(classInfo);
     }
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: '/admin/create/step-3',
+        data: JSON.stringify(classes),
+        success: function (data) {
+            alert("success");
+        },
+        error: function (e) {
+            alert("Error!")
+            console.log("ERROR: ", e);
+        }
+    });
     
 });
+
+
 
