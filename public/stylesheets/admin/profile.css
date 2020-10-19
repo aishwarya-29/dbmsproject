@@ -1,0 +1,152 @@
+.form-control:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+#sidenav {
+    background: linear-gradient(-45deg, #F1FAEE, #A8DADC, #457B9D, #1D3557);
+    background-size: 700% 700%;
+    animation: gradient 15s ease infinite;
+    padding: 5% 2%;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.link {
+    display: block;
+    font-family: 'Rubik', sans-serif;
+    color: white !important;
+    margin-bottom: 6px;
+}
+
+.link:hover {
+    text-decoration: underline !important;  
+    cursor:pointer !important;
+}
+
+.det {
+    display: none;
+    padding: 5% 3%;
+}
+
+h3 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #1D3557;
+}
+
+input {
+    width: 400px !important;
+    margin-bottom: 5%;
+    border-radius: 0% !important;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#Adminform {
+    margin: auto;
+    width: fit-content;
+    font-family: 'Montserrat', sans-serif;
+}
+#cont{
+    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+}
+
+.focus {
+    color: #1D3557 !important;
+    text-shadow: 0 0 3px #A8DADC, 0 0 5px #A8DADC;
+}
+
+#Admindetails {
+    display: block;
+}
+
+.special-btn {
+    padding: 4px;
+}
+
+.special-btn:hover,
+.special-btn:focus {
+    background: #1D3557;
+    color: #ffffff !important;
+    font-weight: 100 !important;
+}
+
+.form2 {
+    width: 100px !important;
+}
+
+input[type=checkbox] {
+    width: fit-content !important;
+    display: inline !important;
+    margin-right: 30px !important;
+}
+
+input[type=number] {
+    width: 70px !important;
+}
+
+select {
+    width: max-content !important;
+}
+
+.form3 {
+    width: max-content !important;
+}
+
+.form2:focus, .form3:focus {
+    border: 1px solid black;
+}
+
+.lst {
+    width: 400px !important;
+}
+
+.list-item {
+    background-color: #D3EDEE;
+    margin: 4px 3px;
+    padding: 3px 3px;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.selected-list-item {
+    background-color: #296668 ;
+    color: white;
+}
+
+select:focus {
+    border: 1px solid black !important;
+}
+
+input[type=time] {
+    width: 200px !important;
+}
+
+thead {
+    background-color: #F39BA2 ;
+}
+
+/* tr:nth-child(n) {
+    background-color: #296668;
+}
+
+tr:nth-child(2n) {
+    background-color: #A8DADC;
+} */

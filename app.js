@@ -147,6 +147,56 @@ var newAdmin = new Admin({
   password: "ilovehp"
 });
 
+app.get("/profile", function(req,res){
+  if(req.user) {
+  if(req.user.type == 'studnet') {
+    res.send("student profile");
+  } else if(req.user.type == 'faculty') {
+    res.send("faculty profile");
+  } else {
+    res.redirect("/admin/profile");
+  }} else {
+    res.redirect("/users");
+  }
+});
 
+// Building.find({}, function(err, buildings){
+//   if(err)
+//     console.log(err);
+//   else {
+//     buildings.forEach(function(building){
+//       var num = building.numberOfClassrooms;
+//       for(var i=0; i<num; i++) {
+//         var name = building.name + "-CR" + (i+1);
+//         Classroom.create({roomNumber: name, building: building}, function(err, clroom){
+//           if(err)
+//             console.log(err);
+//           else {
+//             console.log(clroom);
+//           }
+//         });
+//       }
+//     });
+//   }
+// });
+
+// Building.find({}, function(err, buildings){
+//   if(err)
+//     console.log(err);
+//   else {
+//     buildings.forEach(function(building){
+//       var num = building.numberOfLabs;
+//       for(var i=0; i<num; i++) {
+//         var name = building.name + "-LB" + (i+1);
+//         Lab.create({labID: name, building: building}, function(err, lb){
+//             if(err)
+//               console.log(err);
+//             else 
+//               console.log(lb);
+//         });
+//       }
+//     });
+//   }
+// });
 
 module.exports = app;
