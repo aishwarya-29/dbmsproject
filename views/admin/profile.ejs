@@ -44,31 +44,31 @@
                             <th>Departments</th>
                         </thead>
                         <tbody>
-                            <% buildings.forEach(function(building){ %>
+                            <% var i =1; buildings.forEach(function(building){ %>
                             <tr>
-                                <td><input type="text" class="form-control form2" value="<%= building.name %>"></td>
-                                <td><input type="number" class="form-control form2" value="<%= building.numberOfClassrooms %>" max="20"></td>
-                                <td><input type="number" class="form-control form2" value="<%= building.numberOfLabs %>" max="20"></td>
+                                <td><input type="text" class="form-control form2" name="name" value="<%= building.name %>"></td>
+                                <td><input type="number" class="form-control form2" name="numOfClassroom" value="<%= building.numberOfClassrooms %>" max="20"></td>
+                                <td><input type="number" class="form-control form2" name="numOfLabs" value="<%= building.numberOfLabs %>" max="20"></td>
                                 <td>
-                                    <% var deps = []; %>
+                                    <% var deps = [];%>
                                     <% building.departments.forEach(function(dep){ %>
                                     <%     deps.push(dep.name); %>
                                     <% }); %>
                                     <%departments.forEach(function(department){ %>
-                                        <label><%=department.name%></label>
-                                        <input type="checkbox" class="check" 
+                                        <label><input type="checkbox" name="deps<%=i%>" value="<%=department.name%>"
                                             <% if(deps  .includes(department.name)) {%>
                                                 checked
                                             <% } %>
-                                        >
+                                        ><%=department.name%></label>
                                     <% }); %>
                                 </td>
                             </tr>
+                            <% i+=1; %>
                             <% }); %>
                         </tbody>
                     </table>
                     </div>
-                    <button class="special-btn">Change</button>
+                    <button type="submit" class="special-btn">Change</button>
                 </form>
             </div>
             <div class="det" id="Classdetails">
@@ -87,13 +87,13 @@
                         <th>Courses</th>
                     </thead>
                     <tbody>
-                        <% classes.forEach(function(cl){ %>
+                        <% var i=1; classes.forEach(function(cl){ %>
                             <tr>
-                            <td><input type="text" class="form-control form2" value="<%= cl.name %>"></td>
-                            <td><input type="number" class="form-control form2" value="<%= cl.year %>"></td>
-                            <td><input type="number" class="form-control form2" value="<%= cl.strength %>"></td>
+                            <td><input type="text" class="form-control form2" name="name" value="<%= cl.name %>"></td>
+                            <td><input type="number" class="form-control form2" name="year" value="<%= cl.year %>"></td>
+                            <td><input type="number" class="form-control form2" name="strength" value="<%= cl.strength %>"></td>
                             <td>
-                                <select class="form-control">
+                                <select class="form-control" name="department">
                                     <% departments.forEach(function(dep){ %>
                                         <% if(dep.name == cl.department.name) {%>
                                             <option selected><%= dep.name %></option>
@@ -104,7 +104,7 @@
                                 </select>
                             </td>
                             <td>
-                                <select class="form-control">
+                                <select class="form-control" name="advisor">
                                     <% faculties.forEach(function(fac){ %>
                                         <% if(fac.fullName == cl.classAdvisor.fullName) {%>
                                             <option selected><%= fac.fullName %></option>
@@ -115,7 +115,7 @@
                                 </select>
                             </td>
                             <td>
-                                <select class="form-control">
+                                <select class="form-control" name="defaultBuilding">
                                     <% buildings.forEach(function(build){ %>
                                         <% if(build.name == cl.defaultBuilding.name) {%>
                                             <option selected><%= build.name %></option>
@@ -130,21 +130,21 @@
                                 <% cl.courses.forEach(function(cr){ %>
                                     <% courselist.push(cr.name) %>
                                 <% }) %>
-                                <div class="lst">
+                                <div class="lst" id="classcourse<%=i%>">
                                     <% courses.forEach(function(course){ %>
-                                        <span class="list-item <% if(courselist.includes(course.name)) {%> selected-list-item <%}%>" style="display: inline-block">
+                                        <span class="list-item <%=i%> <% if(courselist.includes(course.name)) {%> selected-list-item<%}%>" style="display: inline-block">
                                             <%= course.name %>
                                         </span>
                                     <% }) %>
                                 </div>
                             </td>
                             </tr>
-                        <% }); %>
+                        <% i+=1; }); %>
                     </tbody>
                 </table>
                 </div>
+                <br><button type="button" class="special-btn" id="btn1">Change</button>
                 </form>
-                <br><button class="special-btn">Change</button>
             </div>
             <div class="det" id="Classroomdetails">
                 <h3>Classroom Details</h3>
@@ -160,10 +160,10 @@
                     <tbody>
                     <% classrooms.forEach(function(classroom){ %>
                     <tr>
-                        <td><input class="form-control form2" type="text" value="<%= classroom.roomNumber%>"></td>
-                        <td><input class="form-control form2" type="number" value="<%= classroom.capacity %>"></td>
+                        <td><input class="form-control form2" type="text" name="roomNumber" value="<%= classroom.roomNumber%>"></td>
+                        <td><input class="form-control form2" type="number" name="capacity" value="<%= classroom.capacity %>"></td>
                         <td>
-                            <select class="form-control">
+                            <select class="form-control" name="building">
                                 <% buildings.forEach(function(build){ %>
                                     <% if(build.name == classroom.building.name) {%>
                                         <option selected><%= build.name %></option>
@@ -178,8 +178,8 @@
                     </tbody>
                 </table>
                 </div>
+                <button type="submit" class="special-btn">Change</button>
                 </form>
-                <button class="special-btn">Change</button>
             </div>
             <div class="det" id="Coursedetails">
                 <h3>Course Details</h3>
@@ -198,11 +198,11 @@
                     <tbody>
                         <% courses.forEach(function(course){ %>
                             <tr>
-                                <td><input class="form-control form3" type="text" value="<%=course.id%>"></td>
-                                <td><input class="form-control form3" type="text" value="<%=course.name%>"></td>
-                                <td><input class="form-control form3" type="number" value="<%=course.credits%>"></td>
+                                <td><input class="form-control form3" type="text" name="id" value="<%=course.id%>"></td>
+                                <td><input class="form-control form3" type="text" name="name" value="<%=course.name%>"></td>
+                                <td><input class="form-control form3" type="number" name="credits" value="<%=course.credits%>"></td>
                                 <td>
-                                    <select class="form-control">
+                                    <select class="form-control" name="type">
                                         <% if(course.type.localeCompare("theory") == 0) { %>
                                             <option selected>Theory</option>
                                         <% } else { %>
@@ -222,13 +222,14 @@
                                 </td>
                                 <td>
                                     <% if(course.elective) { %>
-                                        <input type="checkbox" checked></label>
+                                        <input name="elective" type="checkbox" value="1" checked ></label>
                                     <% } else { %>
-                                        <input type="checkbox"></label>
+                                        <input name="elective" type="checkbox" value="1"></label>
                                     <% } %>
+                                    <input type="hidden" name="elective" value="0">
                                 </td>
                                 <td>
-                                    <select class="form-control">
+                                    <select class="form-control" name="mentor">
                                     <%faculties.forEach(function(fac){ %>
                                         <% if(fac.fullName == course.courseMentor.fullName) {%>
                                             <option selected><%= fac.fullName %></option>
@@ -243,8 +244,8 @@
                     </tbody>
                 </table>
                 </div>
+                <br> <button type="submit" class="special-btn">Change</button>
                 </form>
-                <br> <button class="special-btn">Change</button>
             </div>
             <div class="det" id="Departmentdetails">
                 <h3>Department Details</h3>
@@ -259,9 +260,9 @@
                     <tbody>
                         <% departments.forEach(function(department){ %>
                             <tr>
-                                <td><input class="form-control form3" type="text" value="<%= department.name %>"></td>
+                                <td><input class="form-control form3" type="text" name="name" value="<%= department.name %>"></td>
                                 <td>
-                                    <select class="form-control">
+                                    <select class="form-control" name="head">
                                         <%faculties.forEach(function(fac){ %>
                                             <% if(fac.fullName == department.departmentHead.fullName) {%>
                                                 <option selected><%= fac.fullName %></option>
@@ -276,8 +277,8 @@
                     </tbody>
                 </table>
                 </div>
+                <button type="submit" class="special-btn">Change</button>
                 </form>
-                <button class="special-btn">Change</button>
             </div>
             <div class="det" id="Facultydetails">
                 <h3>Faculty Details</h3>
@@ -292,17 +293,17 @@
                             <th>Courses</th>
                         </thead>
                         <tbody>
-                            <% faculties.forEach(function(faculty){ %>
+                            <% var i=1; faculties.forEach(function(faculty){ %>
                                 <tr>
-                                    <td><input class="form-control form2" type="text" value="<%=faculty.id%>"></td>
-                                    <td><input class="form-control form3" type="text" value="<%=faculty.fullName%>"></td>
-                                    <td><input class="form-control form3" type="text" value="<%=faculty.emailID%>"></td>
+                                    <td><input class="form-control form2" type="text" name="id" value="<%=faculty.id%>"></td>
+                                    <td><input class="form-control form3" type="text" name="name" value="<%=faculty.fullName%>"></td>
+                                    <td><input class="form-control form3" type="text" name="email" value="<%=faculty.emailID%>"></td>
                                     <td>
                                         <% var courselist2 = []; %>
                                         <% faculty.courses.forEach(function(cr){ %>
                                             <% courselist2.push(cr.name) %>
                                         <% }) %>
-                                        <div class="lst">
+                                        <div class="lst" id="facultycourse<%=i%>">
                                             <% courses.forEach(function(course){ %>
                                                 <span class="list-item <% if(courselist2.includes(course.name)) {%> selected-list-item <%}%>" style="display: inline-block">
                                                     <%= course.name %>
@@ -311,13 +312,13 @@
                                         </div>
                                     </td>
                                 </tr>
-                            <% }) %>
+                            <% i+=1; }) %>
                         </tbody>
                     </table>
                     </div>
+                    <button type="button" id="btn2" class="special-btn">Change</button>
                 </form>
                 <br>
-                <button class="special-btn">Change</button>
             </div>
             <div class="det" id="Labdetails">
                 <h3>Lab Details</h3>
@@ -334,10 +335,10 @@
                             <tbody>
                                 <% labs.forEach(function(lab){ %>
                                     <tr>
-                                        <td><input class="form-control form2" type="text" value="<%= lab.labID %>"></td>
-                                        <td><input class="form-control form2" type="number" value="<%= lab.capacity %>"></td>
+                                        <td><input class="form-control form2" type="text" name="labID" value="<%= lab.labID %>"></td>
+                                        <td><input class="form-control form2" type="number" name="capacity" value="<%= lab.capacity %>"></td>
                                         <td>
-                                            <select class="form-control">
+                                            <select class="form-control" name="building">
                                                 <% buildings.forEach(function(build){ %>
                                                     <% if(build.name == lab.building.name) {%>
                                                         <option selected><%= build.name %></option>
@@ -348,7 +349,7 @@
                                             </select>
                                         </td>
                                         <td>
-                                            <select class="form-control">
+                                            <select class="form-control" name="incharge">
                                                 <%faculties.forEach(function(fac){ %>
                                                     <% if(lab.labIncharge) { %>
                                                         <% if(fac.fullName == lab.labIncharge.fullName) {%>
@@ -367,8 +368,8 @@
                             </tbody>
                         </table>
                     </div>
+                    <button type="submit" class="special-btn">Change</button>
                 </form>
-                <button class="special-btn">Change</button>
             </div>
             <div class="det" id="Timetabledetails">
                 <h3>Timetable Structure</h3>
@@ -382,7 +383,7 @@
                     <label>Lunch break end</label>
                     <input class="form-control" type="time" id="lunchend" name="lunchend" value="<%= structure.lunchBreakEnd %>">
                     
-                    <button class="special-btn">Change</button>
+                    <button type="submit" class="special-btn">Change</button>
                 </form>
             </div>  
         </div>

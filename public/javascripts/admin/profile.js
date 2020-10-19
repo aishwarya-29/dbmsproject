@@ -173,17 +173,17 @@ $('#add-building').click(function(){
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
-    cell1.innerHTML = '<input type="text" class="form-control form2">';
-    cell2.innerHTML = '<input type="number" class="form-control form2">';
-    cell3.innerHTML = '<input type="text" class="form-control form2">';
+    cell1.innerHTML = '<input type="text" class="form-control form2" name="name">';
+    cell2.innerHTML = '<input type="number" class="form-control form2" name="numOfClassroom">';
+    cell3.innerHTML = '<input type="text" class="form-control form2" name="numOfLabs">';
     var str = "";
     for(var i=0; i<departmentList.length;i++){
-        str+='<label>'+departmentList[i]+'</label>  <input type="checkbox" class="check">';
+        str+='<label><input type="checkbox" class="check" name="deps'+($("#tb tr").length-1)+'" value="'+departmentList[i]+'">'+departmentList[i]+'</label>';
     };
     cell4.innerHTML = str;
 });
 
-$('.list-item').click(function(){
+$(document.body).on('click','.list-item',function(){
     $(this).toggleClass('selected-list-item');
 });
 
@@ -194,13 +194,35 @@ $('#add-classroom').click(function(){
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
-    cell1.innerHTML = '<input class="form-control form2" type="text">';
-    cell2.innerHTML = '<input type="number" class="form-control form2">';
+    cell1.innerHTML = '<input class="form-control form2" name="roomNumber" type="text">';
+    cell2.innerHTML = '<input type="number" name="capacity" class="form-control form2">';
     var options = "";
     for(var i=0; i<buildingList.length;i++) {
         options += "<option>"+buildingList[i]+"</option>"
     }
-    cell3.innerHTML = '<select class="form-control">'+options+'</select>';
+    cell3.innerHTML = '<select class="form-control" name="building">'+options+'</select>';
+});
+
+$('#add-course').click(function(){
+    var table = document.getElementById("tb4");
+    var rowCount = $("#tb4 tr").length;
+    var row = table.insertRow(rowCount);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+    var cell6 = row.insertCell(5);
+    cell1.innerHTML = '<input class="form-control form3" type="text" name="id">';
+    cell2.innerHTML = '<input class="form-control form3" type="text" name="name">';
+    cell3.innerHTML = '<input class="form-control form3" type="number" name="credits">';
+    cell4.innerHTML = '<select class="form-control" name="type"><option>Theory</option><option>Lab</option><option>Both</option></select>';
+    cell5.innerHTML = '<input name="elective" type="checkbox" value="1"></label>'
+    var options = "";
+    for(var i=0; i<facultylist.length;i++) {
+        options += '<option>'+ facultylist[i]+'</option>'
+    }
+    cell6.innerHTML = '<select class="form-control" name="mentor">' + options + "</select>";
 });
 
 $('#add-department').click(function(){
@@ -209,12 +231,12 @@ $('#add-department').click(function(){
     var row = table.insertRow(rowCount);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
-    cell1.innerHTML = '<input class="form-control form3" type="text">';
+    cell1.innerHTML = '<input class="form-control form3" name="name" type="text">';
     var options = "";
     for(var i=0; i<facultylist.length;i++) {
         options += "<option>"+facultylist[i]+"</option>"
     }
-    cell2.innerHTML = '<select class="form-control">'+options+'</select>';
+    cell2.innerHTML = '<select class="form-control" name="head">'+options+'</select>';
 });
 
 $('#add-faculty').click(function(){
@@ -225,14 +247,14 @@ $('#add-faculty').click(function(){
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
-    cell1.innerHTML = '<input class="form-control form2" type="text">';
-    cell2.innerHTML = '<input class="form-control form3" type="text">';
-    cell3.innerHTML = '<input class="form-control form3" type="text">';
+    cell1.innerHTML = '<input class="form-control form2" name="id" type="text">';
+    cell2.innerHTML = '<input class="form-control form3" name="name" type="text">';
+    cell3.innerHTML = '<input class="form-control form3" name="email" type="text">';
     var options = "";
     for(var i=0; i<courseList.length;i++) {
         options += '<span class="list-item" style="display: inline-block">'+courseList[i]+"</span>"
     }
-    cell4.innerHTML = '<div class="lst">' + options + "</div>";
+    cell4.innerHTML = '<div class="lst" id="facultycourse'+ rowCount+ '">' + options + "</div>";
 });
 
 $('#add-lab').click(function(){
@@ -243,16 +265,53 @@ $('#add-lab').click(function(){
     var cell2 = row.insertCell(1);
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
-    cell1.innerHTML = '<input class="form-control form2" type="text">';
-    cell2.innerHTML = '<input class="form-control form2" type="number">';
+    cell1.innerHTML = '<input class="form-control form2" name="labID" type="text">';
+    cell2.innerHTML = '<input class="form-control form2" name="capacity" type="number">';
     var options = "";
     for(var i=0; i<buildingList.length;i++) {
         options += "<option>"+buildingList[i]+"</option>"
     }
-    cell3.innerHTML = '<select class="form-control">'+options+'</select>';
+    cell3.innerHTML = '<select class="form-control" name="building">'+options+'</select>';
     var options2 = "";
     for(var i=0; i<facultylist.length;i++) {
         options2 += "<option>"+facultylist[i]+"</option>";
     }
-    cell4.innerHTML = '<select class="form-control">'+options2+'</select>';
+    cell4.innerHTML = '<select class="form-control" name="incharge">'+options2+'</select>';
+});
+
+$('#btn1').click(function(){
+    var len = $('#tb2 tr').length;
+    var list1 = [];
+    for(var i=0; i<len;i++) {
+        var list2 = [];
+        $('#classcourse'+(i+1)+' .selected-list-item').each(function(){
+            list2.push($(this).text().trim());
+        });
+        list1.push(list2);
+    }
+    for(var i=0;i<list1.length;i++) {
+        for(var j=0; j<list1[i].length; j++) {
+            $('#Classform').append('<input type="hidden" name="classcourse' +(i+1)+'" value="' + list1[i][j] +'">');
+        }
+    }
+
+    $('#Classform').submit();
+});
+
+$('#btn2').click(function(){
+    var len = $('#tb6 tr').length;
+    var list1 = [];
+    for(var i=0; i<len;i++) {
+        var list2 = [];
+        $('#facultycourse'+(i+1)+' .selected-list-item').each(function(){
+            list2.push($(this).text().trim());
+        });
+        list1.push(list2);
+    }
+    for(var i=0;i<list1.length;i++) {
+        for(var j=0; j<list1[i].length; j++) {
+            $('#Facultyform').append('<input type="hidden" name="facultycourse' +(i+1)+'" value="' + list1[i][j] +'">');
+        }
+    }
+    $('#Facultyform').submit();
 });

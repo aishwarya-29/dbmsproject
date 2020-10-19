@@ -95,7 +95,7 @@ input {
 input[type=checkbox] {
     width: fit-content !important;
     display: inline !important;
-    margin-right: 30px !important;
+    margin-left: 10px !important;
 }
 
 input[type=number] {
@@ -140,7 +140,8 @@ input[type=time] {
 }
 
 thead {
-    background-color: #F39BA2 ;
+    background-color: #1D3557 ;
+    color: white;
 }
 
 /* tr:nth-child(n) {

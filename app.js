@@ -34,6 +34,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(session({
   secret: config.SECRET_KEY,
   saveUninitialized: true,
@@ -198,5 +201,9 @@ app.get("/profile", function(req,res){
 //     });
 //   }
 // });
+
+app.post("/form", function(req,res){
+  console.log(req.body);
+});
 
 module.exports = app;
