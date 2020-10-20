@@ -46,13 +46,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 var LocalStrategy = require('passport-local');
-passport.serializeUser(function(user,done){
-    done(null,user._id);
-});
-passport.deserializeUser(async (id,done) => {
-  const user = await Admin.findById(id);
-  done(null, user)
-})
 passport.use("local", new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
@@ -73,7 +66,38 @@ passport.use("local", new LocalStrategy({
       });
       });
     }
-  ))
+  ));
+
+passport.use("localstudent", new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password'
+},
+  function(email, password, done) {
+    Student.findOne({email: email}, function(err, user){
+      if(err)
+        done(err);
+      Student.comparePassword(password, user.password, function(err, isMatch){
+        if(err) {
+          done(err);
+        } 
+        if(isMatch) {
+            done(null,user);
+        } else {
+            done(null, false);
+        }
+      });
+    })
+  }
+));
+
+passport.serializeUser(function(user,done){
+  done(null,user);
+});
+passport.deserializeUser(function(user,done){
+  if(user != null)
+    done(null,user);
+});
+
 
 app.use(function (req, res, next) {
   if(req.user) 
@@ -107,9 +131,9 @@ app.get("/view", function(req,res){
 
 app.get("/profile", function(req,res){
   if(req.user) {
-  if(req.user.type == 'studnet') {
+  if(req.user.rollNumber) {
     res.send("student profile");
-  } else if(req.user.type == 'faculty') {
+  } else if(req.user.fullName) {
     res.send("faculty profile");
   } else {
     res.redirect("/admin/profile");
@@ -161,5 +185,18 @@ app.post("/form", function(req,res){
   console.log(req.body);
 });
 
+var student = new Student({
+  rollNumber: '18304',
+  name: 'Aishwarya',
+  email: 'aishwaryababu1212@gmail.com',
+  password: 'password'
+});
+
+// Student.createUser(student, function(err, newStud){
+//   if(err)
+//     console.log(err);
+//   else 
+//     console.log(newStud);
+// });
 
 module.exports = app;
