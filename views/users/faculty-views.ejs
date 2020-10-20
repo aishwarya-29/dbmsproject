@@ -1,12 +1,9 @@
- <!-- partial:index.partial.html -->
+<%- include ("../partials/header") %>
+<head>
+    <link rel="stylesheet" href="/stylesheets/users/faculty-profile.css">
+</head>
   <div id="wrapper">
         <div id="page-content-wrapper">
-            <%- include("../partials/sideProfile") %>
-              <button type="button" class="hamburger animated fadeInLeft is-closed" data-toggle="offcanvas">
-                  <span class="hamb-top"></span>
-                  <span class="hamb-middle"></span>
-                  <span class="hamb-bottom"></span>
-              </button>
               <div class="container">
                   <div class="row">
                       <div class="col-lg-8 col-lg-offset-2">
@@ -212,7 +209,7 @@
         <button class="btn btn-sm btn-info"><a href="/view">View</a></button>
     </form>
       </div>
-      <!-- /#wrapper -->
-  </body>
+<% include ("../partials/footer") %>
+<script  src="/javascripts/users/teacherProfile.js"></script>
   
   
