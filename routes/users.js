@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 router.get("/", function(req,res){
-  res.render("users/login");
+  setTimeout(function(){
+    res.render("users/login");
+  },1000);
 });
 
 router.get("/user-profile", function(req,res){

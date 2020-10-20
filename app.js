@@ -1,6 +1,5 @@
 var express = require('express');
 var path = require('path');
-var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var config = require('./config');
@@ -10,6 +9,7 @@ var session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
+var apiRouter   = require('./routes/api');
 
 var Admin = require('./models/admin');
 var Building = require('./models/building');
@@ -97,58 +97,13 @@ var conn = mongoose.connection;
 app.use(indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin',adminRouter);
+app.use('/api', apiRouter);
 
 
 app.get("/view", function(req,res){
   res.render("view/index");
 });
 
-app.post("/login", function(req,res){
-  res.redirect("/view");
-});
-
-app.post("/api/faculty", function(req,res){
-  Faculty.find({}, function(err, faculties){
-    if(err) {
-      console.log(err);
-    } else {
-      return res.send(faculties);
-    }
-  });
-});
-
-app.post("/api/course", function(req,res){
-  Course.find({}, function(err, courses){
-    if(err)
-      console.log(err);
-    else 
-      return res.send(courses);
-  })
-});
-
-app.post("/api/department", function(req,res){
-  Department.find({}, function(err, departments){
-    if(err)
-      console.log(err);
-    else 
-      return res.send(departments);
-  })
-});
-
-app.post("/api/building", function(req,res){
-  Building.find({}, function(err, buildings){
-    if(err)
-      console.log(err);
-    else
-      return res.send(buildings);
-  });
-});
-
-var newAdmin = new Admin({
-  name: "Albus Dumbledore",
-  email: "admin@hogwarts.edu",
-  password: "ilovehp"
-});
 
 app.get("/profile", function(req,res){
   if(req.user) {
@@ -205,5 +160,6 @@ app.get("/profile", function(req,res){
 app.post("/form", function(req,res){
   console.log(req.body);
 });
+
 
 module.exports = app;
