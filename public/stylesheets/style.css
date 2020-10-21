@@ -137,6 +137,10 @@ body {
   font-size: 36px !important;
   color: #2A4C7D !important;
 }
+
+.example {
+  width: fit-content !important;
+}
   
 .example .hover {
     transition: all 0.1s ease-in-out;

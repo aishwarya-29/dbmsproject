@@ -21,6 +21,11 @@ router.post("/",passport.authenticate('local',{
     failureRedirect: '/error'
 }));
 
+router.post("/logout", function(req,res){
+    req.logout();
+    res.redirect("/users");
+});
+
 router.get("/create", function(req,res){
     res.render("admin/create");
 });
@@ -244,81 +249,81 @@ router.get("/create/step-3", function(req,res){
 
 router.post("/create/step-3", function(req,res){
     var formData = req.body;
-    console.log(formData);
-    formData.forEach(function(classInfo){
-        Class.create({
-            name: classInfo.name,
-            year: classInfo.year,
-            section: classInfo.section,
-            strength: classInfo.strength,
-        }, function(err, newClass){
-            if(err)
-                console.log(err);
-            console.log(newClass);
-        });
+    // console.log(formData);
+    // formData.forEach(function(classInfo){
+    //     Class.create({
+    //         name: classInfo.name,
+    //         year: classInfo.year,
+    //         section: classInfo.section,
+    //         strength: classInfo.strength,
+    //     }, function(err, newClass){
+    //         if(err)
+    //             console.log(err);
+    //         console.log(newClass);
+    //     });
 
-        Department.findOne({name: classInfo.department}, function(err,department){
-            if(err)
-                console.log(err);
-            else {
-                Class.findOne({name: classInfo.name}, function(err,foundClass){
-                    if(err)
-                        console.log(err);
-                    else {
-                        foundClass.department = department;
-                        foundClass.save();
-                    }
-                });
-            }   
-        });
+    //     Department.findOne({name: classInfo.department}, function(err,department){
+    //         if(err)
+    //             console.log(err);
+    //         else {
+    //             Class.findOne({name: classInfo.name}, function(err,foundClass){
+    //                 if(err)
+    //                     console.log(err);
+    //                 else {
+    //                     foundClass.department = department;
+    //                     foundClass.save();
+    //                 }
+    //             });
+    //         }   
+    //     });
 
-        Building.findOne({name: classInfo.build}, function(err,building){
-            if(err)
-                console.log(err);
-            else {
-                Class.findOne({name: classInfo.name}, function(err,foundClass){
-                    if(err)
-                        console.log(err);
-                    else {
-                        foundClass.defaultBuilding = building;
-                        foundClass.save();
-                    }
-                });
-            }   
-        });
+    //     Building.findOne({name: classInfo.build}, function(err,building){
+    //         if(err)
+    //             console.log(err);
+    //         else {
+    //             Class.findOne({name: classInfo.name}, function(err,foundClass){
+    //                 if(err)
+    //                     console.log(err);
+    //                 else {
+    //                     foundClass.defaultBuilding = building;
+    //                     foundClass.save();
+    //                 }
+    //             });
+    //         }   
+    //     });
 
-        Faculty.findOne({fullName: classInfo.advisor}, function(err,faculty){
-            if(err)
-                console.log(err);
-            else {
-                Class.findOne({name: classInfo.name}, function(err,foundClass){
-                    if(err)
-                        console.log(err);
-                    else {
-                        foundClass.classAdvisor = faculty;
-                        foundClass.save();
-                    }
-                });
-            }   
-        });
+    //     Faculty.findOne({fullName: classInfo.advisor}, function(err,faculty){
+    //         if(err)
+    //             console.log(err);
+    //         else {
+    //             Class.findOne({name: classInfo.name}, function(err,foundClass){
+    //                 if(err)
+    //                     console.log(err);
+    //                 else {
+    //                     foundClass.classAdvisor = faculty;
+    //                     foundClass.save();
+    //                 }
+    //             });
+    //         }   
+    //     });
 
-        var courses = classInfo.courses;
-        for(var j = 0; j< courses.length; j++) {
-            Course.findOne({name: courses[j]}, function(err, course){
-                if(err)
-                    console.log(err);
-                else {
-                    Class.findOne({name: classInfo.name}, function(err, foundClass){
-                        if(err)
-                            console.log(err);
-                        else 
-                            foundClass.courses.push(course);
-                            foundClass.save();
-                    });
-                }
-            });
-        }
-    });
+    //     var courses = classInfo.courses;
+    //     for(var j = 0; j< courses.length; j++) {
+    //         Course.findOne({name: courses[j]}, function(err, course){
+    //             if(err)
+    //                 console.log(err);
+    //             else {
+    //                 Class.findOne({name: classInfo.name}, function(err, foundClass){
+    //                     if(err)
+    //                         console.log(err);
+    //                     else 
+    //                         foundClass.courses.push(course);
+    //                         foundClass.save();
+    //                 });
+    //             }
+    //         });
+    //     }
+    // });
 
     return res.send(formData);
 });

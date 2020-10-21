@@ -100,10 +100,22 @@ passport.deserializeUser(function(user,done){
 
 
 app.use(function (req, res, next) {
-  if(req.user) 
-    res.locals.username = req.user.name;
+  if(req.user) {
+    if(req.user.name)
+      res.locals.username = req.user.name;
+    else
+      res.locals.username = req.user.fullName;
+  }
   else
     res.locals.username = null;
+  next();
+});
+
+app.use(function (req,res,next){
+  if(req.user)
+    res.locals.user = req.user;
+  else 
+    res.locals.user = null;
   next();
 });
 
@@ -125,14 +137,22 @@ app.use('/api', apiRouter);
 
 
 app.get("/view", function(req,res){
-  res.render("view/index");
+  if(req.user.id) {
+    res.redirect("/users/faculty-view");
+  } 
+  else if(req.user.fullName) {
+    res.redirect("/users/user-views");
+  }
+  else {
+    res.redirect("/users");
+  }
 });
 
 
 app.get("/profile", function(req,res){
   if(req.user) {
   if(req.user.rollNumber) {
-    res.send("student profile");
+    res.redirect("/users/user-profile");
   } else if(req.user.fullName) {
     res.send("faculty profile");
   } else {
@@ -187,7 +207,7 @@ app.post("/form", function(req,res){
 
 var student = new Student({
   rollNumber: '18304',
-  name: 'Aishwarya',
+  fullName: 'Aishwarya',
   email: 'aishwaryababu1212@gmail.com',
   password: 'password'
 });

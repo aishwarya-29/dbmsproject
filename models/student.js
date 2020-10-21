@@ -3,7 +3,7 @@ var bcrypt = require('bcryptjs');
 
 var studentSchema = mongoose.Schema({
     rollNumber: String,
-    name: String,
+    fullName: String,
     class: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Class"
