@@ -21,7 +21,7 @@
         <div class="col-md-9" id="details">
             <div class="det" id="Admindetails">
                 <h3>Admin Details</h3>
-                <form id="Adminform">
+                <form id="Adminform" action="/update/admin" method="POST" >
                     <label for="name">Name</label>
                     <input class="form-control" type="text" id="name" name="name" value="<%=admin.name%>">
                     <label for="email">E-mail ID</label>
@@ -34,7 +34,7 @@
             <div class="det" id="Buildingdetails">
                 <h3>Building Details</h3>
                 <button class="btn btn-sm btn-info" style="float: right; margin-bottom: 3px;" id="add-building"><i class="fa fa-plus" aria-hidden="true"></i> Add</button><br><br>
-                <form id="Buildingform">
+                <form id="Buildingform" action="/update/building" method="POST">
                     <div style="overflow-x:auto;">
                     <table class="table" id="tb">
                         <thead>
@@ -46,6 +46,7 @@
                         <tbody>
                             <% var i =1; buildings.forEach(function(building){ %>
                             <tr>
+                                <input type="hidden" name="builingid" value="<%=building._id%>">
                                 <td><input type="text" class="form-control form2" name="name" value="<%= building.name %>"></td>
                                 <td><input type="number" class="form-control form2" name="numOfClassroom" value="<%= building.numberOfClassrooms %>" max="20"></td>
                                 <td><input type="number" class="form-control form2" name="numOfLabs" value="<%= building.numberOfLabs %>" max="20"></td>
@@ -55,8 +56,8 @@
                                     <%     deps.push(dep.name); %>
                                     <% }); %>
                                     <%departments.forEach(function(department){ %>
-                                        <label><input type="checkbox" name="deps<%=i%>" value="<%=department.name%>"
-                                            <% if(deps  .includes(department.name)) {%>
+                                        <label><input type="checkbox" name="dep-<%=building._id%>" value="<%=department.name%>"
+                                            <% if(deps.includes(department.name)) {%>
                                                 checked
                                             <% } %>
                                         ><%=department.name%></label>

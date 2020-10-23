@@ -6,10 +6,11 @@ var config = require('./config');
 var passport = require('passport');
 var session = require('express-session');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var adminRouter = require('./routes/admin');
-var apiRouter   = require('./routes/api');
+var indexRouter  = require('./routes/index');
+var usersRouter  = require('./routes/users');
+var adminRouter  = require('./routes/admin');
+var apiRouter    = require('./routes/api');
+var updateRouter = require('./routes/update');
 
 var Admin = require('./models/admin');
 var Building = require('./models/building');
@@ -134,6 +135,7 @@ app.use(indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin',adminRouter);
 app.use('/api', apiRouter);
+app.use('/update', updateRouter);
 
 
 app.get("/view", function(req,res){
@@ -162,45 +164,6 @@ app.get("/profile", function(req,res){
   }
 });
 
-// Building.find({}, function(err, buildings){
-//   if(err)
-//     console.log(err);
-//   else {
-//     buildings.forEach(function(building){
-//       var num = building.numberOfClassrooms;
-//       for(var i=0; i<num; i++) {
-//         var name = building.name + "-CR" + (i+1);
-//         Classroom.create({roomNumber: name, building: building}, function(err, clroom){
-//           if(err)
-//             console.log(err);
-//           else {
-//             console.log(clroom);
-//           }
-//         });
-//       }
-//     });
-//   }
-// });
-
-// Building.find({}, function(err, buildings){
-//   if(err)
-//     console.log(err);
-//   else {
-//     buildings.forEach(function(building){
-//       var num = building.numberOfLabs;
-//       for(var i=0; i<num; i++) {
-//         var name = building.name + "-LB" + (i+1);
-//         Lab.create({labID: name, building: building}, function(err, lb){
-//             if(err)
-//               console.log(err);
-//             else 
-//               console.log(lb);
-//         });
-//       }
-//     });
-//   }
-// });
-
 app.post("/form", function(req,res){
   console.log(req.body);
 });
@@ -217,6 +180,19 @@ var student = new Student({
 //     console.log(err);
 //   else 
 //     console.log(newStud);
+// });
+
+var admin = new Admin({
+  name: "Albus Dumbledore",
+  email: "admin@hogwarts.edu",
+  password: "ilovehp"
+});
+
+// Admin.createUser(admin, function(err, newAdmin){
+//   if(err)
+//     console.log(err);
+//   else 
+//     console.log(newAdmin);
 // });
 
 module.exports = app;

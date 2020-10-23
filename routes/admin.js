@@ -325,6 +325,45 @@ router.post("/create/step-3", function(req,res){
     //     }
     // });
 
+    // Building.find({}, function(err, buildings){
+    //   if(err)
+    //     console.log(err);
+    //   else {
+    //     buildings.forEach(function(building){
+    //       var num = building.numberOfClassrooms;
+    //       for(var i=0; i<num; i++) {
+    //         var name = building.name + "-CR" + (i+1);
+    //         Classroom.create({roomNumber: name, building: building}, function(err, clroom){
+    //           if(err)
+    //             console.log(err);
+    //           else {
+    //             console.log(clroom);
+    //           }
+    //         });
+    //       }
+    //     });
+    //   }
+    // });
+
+    // Building.find({}, function(err, buildings){
+    //   if(err)
+    //     console.log(err);
+    //   else {
+    //     buildings.forEach(function(building){
+    //       var num = building.numberOfLabs;
+    //       for(var i=0; i<num; i++) {
+    //         var name = building.name + "-LB" + (i+1);
+    //         Lab.create({labID: name, building: building}, function(err, lb){
+    //             if(err)
+    //               console.log(err);
+    //             else 
+    //               console.log(lb);
+    //         });
+    //       }
+    //     });
+    //   }
+    // });
+
     return res.send(formData);
 });
 
@@ -383,5 +422,7 @@ router.get("/profile", function(req,res){
         res.redirect("/admin/login");
     }
 });
+
+
 
 module.exports = router;

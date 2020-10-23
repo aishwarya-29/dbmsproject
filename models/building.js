@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 
 var buildingSchema = mongoose.Schema({
-    id: String,
     name: String,
     departments: [{
         type: mongoose.Schema.Types.ObjectId,
