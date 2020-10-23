@@ -130,7 +130,7 @@ router.post("/building", function(req,res){
                         Department.findOne({name: depts}).exec().then(function(dept){
                             Building.findById(building._id).exec().then(function(b){
                                 b.departments.push(dept);
-                                b.save();=
+                                b.save();
                             });
                         });
                     }
