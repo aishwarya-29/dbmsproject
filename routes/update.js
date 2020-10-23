@@ -204,4 +204,72 @@ router.post("/class", function(req,res){
     },2000);
 });
 
+router.post("/classroom", function(req,res){
+    var formData = req.body;
+    console.log(req.body);
+    var classroomID = formData.classroomid;
+    var roomNumber = formData.roomNumber;
+    var capacity = formData.capacity;
+    var building = formData.building;
+
+    for(var i=0; i<classroomID.length; i++) {
+        Classroom.findByIdAndUpdate(classroomID[i],{
+            roomNumber: roomNumber[i],
+            capacity: capacity[i]
+        }).then(croom => {
+        });
+    }
+
+    var ind = 0;
+    classroomID.forEach(function(cid){
+        Building.findOne({name: building[ind]}, function(err, build) {
+            if(err)
+                console.log(err);
+            Classroom.findById(cid, function(err, cls){
+                if(err)
+                    console.log(err);
+                else {
+                    cls.building = build;
+                    cls.save();
+                }
+            });
+        });
+        ind++;
+    });
+
+    if(capacity.length > classroomID.length) {
+        var newClasrooms = [];
+        for(var i=classroomID.length; i<capacity.length; i++) {
+            var cr = {};
+            cr.roomNumber = roomNumber[i];
+            cr.capacity = capacity[i];
+            cr.building = building[i];
+            newClasrooms.push(cr);
+        }
+
+        newClasrooms.forEach(function(classroom){
+            Building.findOne({name: classroom.building}, function(err, build){
+                if(err)
+                    console.log(err);
+                else {
+                    Classroom.create({
+                        roomNumber: classroom.roomNumber,
+                        capacity: classroom.capacity,
+                        building: build
+                    }, function(err, newc){
+                        if(err)
+                            console.log(err);
+                        else {
+                        }
+                    });
+                }
+            });
+        });
+    }
+
+    setTimeout(function(){
+        res.redirect("/admin/profile");
+    },2000);
+});
+
 module.exports = router;

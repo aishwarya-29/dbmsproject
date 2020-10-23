@@ -151,7 +151,7 @@
             <div class="det" id="Classroomdetails">
                 <h3>Classroom Details</h3>
                 <button class="btn btn-sm btn-info" style="float: right; margin-bottom: 3px;" id="add-classroom"><i class="fa fa-plus" aria-hidden="true"></i> Add</button> <br><br>
-                <form id="Classroomform">
+                <form id="Classroomform" action="/update/classroom" method="POST">
                 <div style="overflow-x: auto;">
                 <table class="table" id="tb3">
                     <thead>
@@ -161,6 +161,7 @@
                     </thead>
                     <tbody>
                     <% classrooms.forEach(function(classroom){ %>
+                        <input type="hidden" name="classroomid" value="<%=classroom._id%>">
                     <tr>
                         <td><input class="form-control form2" type="text" name="roomNumber" value="<%= classroom.roomNumber%>"></td>
                         <td><input class="form-control form2" type="number" name="capacity" value="<%= classroom.capacity %>"></td>
