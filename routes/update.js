@@ -272,4 +272,102 @@ router.post("/classroom", function(req,res){
     },2000);
 });
 
+router.post("/course", function(req,res){
+    var formData = req.body;
+    console.log(formData);
+
+    var courseID = formData.courseid;
+    var id = formData.id;
+    var name = formData.name;
+    var credits = formData.credits;
+    var type = formData.type;
+    var elective = formData.elective;
+    var mentor = formData.mentor;
+
+    var elective2 = [];
+    var flag = 1;
+    for(var i=0; i<elective.length; i++) {
+        if(flag) {
+            elective2.push(elective[i]);
+        } else {
+            flag = 1;
+        }
+        if(elective[i] == '1')
+            flag = 0;
+    }
+    var courseList = [];
+    for(var i=0; i<courseID.length; i++) {
+        var course = {};
+        course.objectID = courseID[i];
+        course.id = id[i];
+        course.name = name[i];
+        course.credits = credits[i];
+        course.type = type[i];
+        if(elective2[i] == 1) 
+            course.elective = true;
+        else 
+            course.elective = false;
+        course.mentor = mentor[i];
+        courseList.push(course);
+    }
+    courseList.forEach(function(course){
+        Faculty.findOne({fullName: course.mentor}, function(err, faculty){
+            if(err)
+                console.log(err);
+            else {
+                Course.findByIdAndUpdate(course.objectID,{
+                    id: course.id,
+                    name: course.name,
+                    credits: course.credits,
+                    type: course.type,
+                    elective: course.elective, 
+                    courseMentor: faculty
+                }).then(updatedCourse => {  
+                    //console.log(updatedCourse);
+                })
+            }
+        });
+    });
+
+    if(name.length > courseID.length) {
+        var newCourses = [];
+        for(var i=courseID.length; i<name.length; i++) {
+            var newCourse = {};
+            newCourse.id = id[i];
+            newCourse.name = name[i];
+            newCourse.credits = credits[i];
+            newCourse.type = type[i];
+            if(elective2[i] == 1)
+                newCourse.elective = true;
+            else 
+                newCourse.elective = false;
+            newCourse.mentor = mentor[i];
+            newCourses.push(newCourse);
+        }
+
+        newCourses.forEach(function(newCourse){
+            Faculty.findOne({fullName: newCourse.mentor}, function(err, faculty){
+                if(err)
+                    console.log(err);
+                else {
+                    Course.create({
+                        id: newCourse.id,
+                        name: newCourse.name,
+                        credits: newCourse.credits,
+                        type: newCourse.type,
+                        elective: newCourse.elective,
+                        courseMentor: faculty
+                    }).then(newc => {
+                        //console.log(newc);
+                    });
+                }
+            });
+        });
+    }
+
+    setTimeout(function(){
+        res.redirect("/admin/profile");
+    },2000);
+});
+
 module.exports = router;

@@ -187,7 +187,7 @@
             <div class="det" id="Coursedetails">
                 <h3>Course Details</h3>
                 <button class="btn btn-sm btn-info" style="float: right; margin-bottom: 3px;" id="add-course"><i class="fa fa-plus" aria-hidden="true"></i> Add</button> <br><br>
-                <form id="Courseform">
+                <form id="Courseform" action="/update/course" method="POST">
                 <div style="overflow-x: auto;">
                 <table class="table" id="tb4">
                     <thead>
@@ -200,23 +200,24 @@
                     </thead>
                     <tbody>
                         <% courses.forEach(function(course){ %>
+                            <input type="hidden" name="courseid" value="<%=course._id%>">
                             <tr>
                                 <td><input class="form-control form3" type="text" name="id" value="<%=course.id%>"></td>
                                 <td><input class="form-control form3" type="text" name="name" value="<%=course.name%>"></td>
                                 <td><input class="form-control form3" type="number" name="credits" value="<%=course.credits%>"></td>
                                 <td>
                                     <select class="form-control" name="type">
-                                        <% if(course.type.localeCompare("theory") == 0) { %>
+                                        <% if(course.type.localeCompare("Theory") == 0) { %>
                                             <option selected>Theory</option>
                                         <% } else { %>
                                             <option>Theory</option>
                                         <% } %>
-                                        <% if(course.type.localeCompare("lab") == 0) { %>
+                                        <% if(course.type.localeCompare("Lab") == 0) { %>
                                             <option selected>Lab</option>
                                         <% } else { %>
                                             <option>Lab</option>
                                         <% } %>
-                                        <% if(course.type.localeCompare("both") == 0) { %>
+                                        <% if(course.type.localeCompare("Both") == 0) { %>
                                             <option selected>Both</option>
                                         <% } else { %>
                                             <option>Both</option>
