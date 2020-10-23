@@ -75,8 +75,8 @@
             <div class="det" id="Classdetails">
                 <h3>Class Details</h3>
                 <a href="/admin/create/step-3"><button class="btn btn-sm btn-info" style="float: right; margin-bottom: 3px;"><i class="fa fa-plus" aria-hidden="true"></i> Add</button></a> <br><br>
-                <form id="Classform">
-                <div style="overflow-x: auto;">
+                <form id="Classform" action="/update/class" method="POST">
+                <div style="overflow-x: auto;" id="div">
                 <table class="table" id="tb2">
                     <thead>
                         <th>Name</th>
@@ -89,12 +89,13 @@
                     </thead>
                     <tbody>
                         <% var i=1; classes.forEach(function(cl){ %>
+                            <input type="hidden" name="classid" value="<%=cl._id%>">
                             <tr>
-                            <td><input type="text" class="form-control form2" name="name" value="<%= cl.name %>"></td>
-                            <td><input type="number" class="form-control form2" name="year" value="<%= cl.year %>"></td>
-                            <td><input type="number" class="form-control form2" name="strength" value="<%= cl.strength %>"></td>
+                            <td><input type="text" class="form-control form2" name="name<%=cl._id%>" value="<%= cl.name %>"></td>
+                            <td><input type="number" class="form-control form2" name="year<%=cl._id%>" value="<%= cl.year %>"></td>
+                            <td><input type="number" class="form-control form2" name="strength<%=cl._id%>" value="<%= cl.strength %>"></td>
                             <td>
-                                <select class="form-control" name="department">
+                                <select class="form-control" name="department<%=cl._id%>">
                                     <% departments.forEach(function(dep){ %>
                                         <% if(dep.name == cl.department.name) {%>
                                             <option selected><%= dep.name %></option>
@@ -105,7 +106,7 @@
                                 </select>
                             </td>
                             <td>
-                                <select class="form-control" name="advisor">
+                                <select class="form-control" name="advisor<%=cl._id%>">
                                     <% faculties.forEach(function(fac){ %>
                                         <% if(fac.fullName == cl.classAdvisor.fullName) {%>
                                             <option selected><%= fac.fullName %></option>
@@ -116,7 +117,7 @@
                                 </select>
                             </td>
                             <td>
-                                <select class="form-control" name="defaultBuilding">
+                                <select class="form-control" name="defaultBuilding<%=cl._id%>">
                                     <% buildings.forEach(function(build){ %>
                                         <% if(build.name == cl.defaultBuilding.name) {%>
                                             <option selected><%= build.name %></option>

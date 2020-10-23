@@ -279,7 +279,8 @@ $('#add-lab').click(function(){
     cell4.innerHTML = '<select class="form-control" name="incharge">'+options2+'</select>';
 });
 
-$('#btn1').click(function(){
+$('#btn1').click(function(e){
+    e.preventDefault();
     var len = $('#tb2 tr').length;
     var list1 = [];
     for(var i=0; i<len;i++) {

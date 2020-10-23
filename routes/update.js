@@ -145,4 +145,63 @@ router.post("/building", function(req,res){
     
 });
 
+router.post("/class", function(req,res){
+    console.log(req.body);
+    var formData = req.body;
+    var classID = req.body.classid;
+    var param = "";
+    classID.forEach(classid => {
+        param = "department" + classid;
+        Department.findOne({name: formData[param]}).then(department => {
+            param = "advisor" + classid;
+            Faculty.findOne({fullName: formData[param]}).then(faculty => {
+                param = "defaultBuilding" + classid;
+                Building.findOne({name: formData[param]}).then(building => {
+                    var name_param = "name" + classid;
+                    var year_param = "year" + classid;
+                    var strength_param = "strength" + classid;
+                    // console.log(department);
+                    // console.log(faculty);
+                    // console.log(building);
+                    // console.log(classid, formData[name_param], formData[year_param], formData[strength_param]);
+                    Class.findByIdAndUpdate(classid, {
+                        name: formData[name_param],
+                        year: formData[year_param],
+                        strength: formData[strength_param],
+                        department: department,
+                        classAdvisor: faculty,
+                        defaultBuilding: building,
+                        courses: []
+                    }).then(cls => {
+                        var courseslist = [];
+                        for(var i=0; i<classID.length; i++) {
+                            var clist = [];
+                            clist.push(classID[i]);
+                            var param = 'classcourse' +(i+1);
+                            clist.push(formData[param]);
+                            courseslist.push(clist);
+                        }
+                        
+                        courseslist.forEach(cl => {
+                            for(var i=0; i<cl[1].length; i++) {
+                                Course.findOne({name: cl[1][i]}).then(course => {
+                                    Class.findById(cl[0]).then(cls => {
+                                            cls.courses.push(course);
+                                            cls.markModified('courses');
+                                            cls.save();
+                                    });
+                                });
+                            }
+                        });
+                    })
+                });
+            });
+        });
+    });
+
+    setTimeout(function(){
+        res.redirect("/admin/profile");
+    },2000);
+});
+
 module.exports = router;
