@@ -329,7 +329,7 @@
             <div class="det" id="Labdetails">
                 <h3>Lab Details</h3>
                 <button class="btn btn-sm btn-info" style="float: right; margin-bottom: 3px;" id="add-lab"><i class="fa fa-plus" aria-hidden="true"></i> Add</button> <br><br>
-                <form id="Labform">
+                <form id="Labform" action="/update/lab" method="POST">
                     <div style="overflow-x: auto;">
                         <table class="table" id="tb7">
                             <thead>
@@ -340,6 +340,7 @@
                             </thead>
                             <tbody>
                                 <% labs.forEach(function(lab){ %>
+                                    <input type="hidden" name="labid" value="<%=lab._id%>" >
                                     <tr>
                                         <td><input class="form-control form2" type="text" name="labID" value="<%= lab.labID %>"></td>
                                         <td><input class="form-control form2" type="number" name="capacity" value="<%= lab.capacity %>"></td>

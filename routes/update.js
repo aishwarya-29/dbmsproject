@@ -535,4 +535,74 @@ router.post("/faculty", function(req,res){
     },2000); 
 });
 
+router.post("/lab", function(req,res){
+    var formData = req.body;
+    console.log(formData);
+
+    var labID = formData.labid;
+    var id = formData.labID;
+    var capacity = formData.capacity;
+    var building = formData.building;
+    var incharge = formData.incharge;
+
+    var labs = [];
+    for(var i=0; i<labID.length; i++) {
+        var lab = {};
+        lab.objectID = labID[i];
+        lab.id = id[i];
+        lab.capacity = capacity[i];
+        lab.building = building[i];
+        lab.incharge = incharge[i];
+        labs.push(lab);
+    }
+
+    //console.log(labs);
+
+    labs.forEach(lab => {
+        Building.findOne({name: lab.building}).then(build => {
+            Faculty.findOne({fullName: lab.incharge}).then(fac => {
+                Lab.findByIdAndUpdate(lab.objectID,{
+                    labID: lab.id,
+                    capacity: lab.capacity,
+                    building: build,
+                    labIncharge: fac
+                }).then(updatedLab => {
+                    //console.log(updatedLab);
+                });
+            });
+        });
+    });
+
+    if(id.length > labID.length) {
+        var newLabs = [];
+        for(var i=labID.length; i<id.length; i++) {
+            var newLab = {};
+            newLab.id = id[i];
+            newLab.capacity = capacity[i];
+            newLab.building = building[i];
+            newLab.incharge = incharge[i];
+            newLabs.push(newLab);
+        }
+
+        newLabs.forEach(lab => {
+            Building.findOne({name: lab.building}).then(build => {
+                Faculty.findOne({fullName: lab.incharge}).then(fac => {
+                    Lab.create({
+                        labID: lab.id,
+                        capacity: lab.capacity,
+                        building: build,
+                        labIncharge: fac
+                    }).then(newLab => {
+                        //console.log(newLab);
+                    });
+                });
+            });
+        });
+    }
+
+    setTimeout(function(){
+        res.redirect("/admin/profile");
+    },2000); 
+});
+
 module.exports = router;
