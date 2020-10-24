@@ -431,4 +431,108 @@ router.post("/department", function(req,res){
     },2000);
 });
 
+router.post("/faculty", function(req,res){
+    var formData = req.body;
+    console.log(formData);
+
+    var facultyID = formData.facultyid;
+    var id = formData.id;
+    var name = formData.name;
+    var email = formData.email;
+
+    var faculties = [];
+    for(var i=0; i<facultyID.length; i++) {
+        var faculty = {};
+        faculty.objectID = facultyID[i];
+        faculty.id = id[i];
+        faculty.name = name[i];
+        faculty.email = email[i];
+        faculty.courses = [];
+        var crses = formData["facultycourse"+(i+1)];
+        if(Array.isArray(crses)) {
+            faculty.courses = crses;
+        } else {
+            faculty.courses.push(crses);
+        }
+        faculties.push(faculty);
+    }
+
+    faculties.forEach(faculty => {
+        Faculty.findByIdAndUpdate(faculty.objectID, {
+            id: faculty.id,
+            fullName: faculty.name,
+            emailID: faculty.email,
+            courses: []
+        }).then(updatedFaculty => {
+            //console.log(updatedFaculty);
+        });
+
+        faculty.courses.forEach(faccourse => {
+            Course.findOne({name: faccourse}, function(err, course){
+                if(err)
+                    console.log(err);
+                else {
+                    Faculty.findById(faculty.objectID, function(err, faculty){
+                        if(err)
+                            console.log(err);
+                        else {
+                            faculty.courses.push(course);
+                            faculty.save();
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+    if(name.length > facultyID.length) {
+        var newFaculties = [];
+        for(var i=facultyID.length; i<name.length; i++) {
+            var newFaculty = {};
+            newFaculty.id = id[i];
+            newFaculty.name = name[i];
+            newFaculty.email = email[i];
+            newFaculty.courses = [];
+            var crses = formData["facultycourse"+(i+1)];
+            if(Array.isArray(crses)) {
+                newFaculty.courses = crses;
+            } else {
+                newFaculty.courses.push(crses);
+            }
+            newFaculties.push(newFaculty);
+        }
+        
+        newFaculties.forEach(newFaculty => {
+            Faculty.create({
+                id: newFaculty.id,
+                fullName: newFaculty.name,
+                emailID: newFaculty.email,
+                courses: []
+            }).then(newFac => {
+                newFaculty.courses.forEach(newCourse => {
+                    Course.findOne({name: newCourse}, function(err, foundCourse){
+                        if(err)
+                            console.log(err);
+                        else {
+                            Faculty.findOne({id: newFaculty.id}, function(err, foundFac){
+                                if(err)
+                                    console.log(err);
+                                else {
+                                    foundFac.courses.push(foundCourse);
+                                    foundFac.save();
+                                    //console.log(foundFac);
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+        });
+    }
+
+    setTimeout(function(){
+        res.redirect("/admin/profile");
+    },2000); 
+});
+
 module.exports = router;

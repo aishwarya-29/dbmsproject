@@ -288,7 +288,7 @@
             <div class="det" id="Facultydetails">
                 <h3>Faculty Details</h3>
                 <button class="btn btn-sm btn-info" style="float: right; margin-bottom: 3px;" id="add-faculty"><i class="fa fa-plus" aria-hidden="true"></i> Add</button> <br><br>
-                <form id="Facultyform">
+                <form id="Facultyform" action="/update/faculty" method="POST">
                     <div style="overflow-x: auto;">
                     <table class="table" id="tb6">
                         <thead>
@@ -299,6 +299,7 @@
                         </thead>
                         <tbody>
                             <% var i=1; faculties.forEach(function(faculty){ %>
+                                <input type="hidden" name="facultyid" value="<%=faculty._id%>">
                                 <tr>
                                     <td><input class="form-control form2" type="text" name="id" value="<%=faculty.id%>"></td>
                                     <td><input class="form-control form3" type="text" name="name" value="<%=faculty.fullName%>"></td>
@@ -321,7 +322,7 @@
                         </tbody>
                     </table>
                     </div>
-                    <button type="button" id="btn2" class="special-btn">Change</button>
+                    <br><button type="button" id="btn2" class="special-btn">Change</button>
                 </form>
                 <br>
             </div>
