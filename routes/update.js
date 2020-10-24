@@ -605,4 +605,21 @@ router.post("/lab", function(req,res){
     },2000); 
 });
 
+router.post("/ttstructure", function(req,res){
+    console.log(req.body);
+    var formData = req.body;
+    TimetableStructure.findOneAndUpdate({},{
+        daysInWeek: formData.daysInWeek,
+        hoursInDay: formData.hoursInDay,
+        lunchBreakStart: formData.lunchstart,
+        lunchBreakEnd: formData.lunchend
+    }).then(ttstructure => {
+        //console.log(ttstructure);
+    });
+
+    setTimeout(function(){
+        res.redirect("/admin/profile");
+    },2000); 
+});
+
 module.exports = router;

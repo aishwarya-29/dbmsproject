@@ -380,7 +380,7 @@
             </div>
             <div class="det" id="Timetabledetails">
                 <h3>Timetable Structure</h3>
-                <form id="Timetableform">
+                <form id="Timetableform" action="/update/ttstructure" method="POST">
                     <label for="daysInWeek">Days in Week</label>
                     <input class="form-control" type="number" id="daysInWeek" name="daysInWeek" value="<%= structure.daysInWeek %>">
                     <label for="hoursInDay form2">Hours in Day</label>
