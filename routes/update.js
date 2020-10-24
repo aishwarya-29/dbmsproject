@@ -370,4 +370,65 @@ router.post("/course", function(req,res){
     },2000);
 });
 
+router.post("/department", function(req,res){
+    var formData = req.body;
+    console.log(formData);
+    var departmentID = formData.departmentid;
+    var name = formData.name;
+    var head = formData.head;
+
+    var departments = [];
+    for(var i=0; i<departmentID.length; i++) {
+        var department = {};
+        department.objectID = departmentID[i];
+        department.name = name[i];
+        department.head = head[i];
+        departments.push(department);
+    }
+
+    departments.forEach(function(dep) {
+        Faculty.findOne({fullName: dep.head}, function(err, faculty){
+            if(err)
+                console.log(err);
+            else {
+                Department.findByIdAndUpdate(dep.objectID, {
+                    name: dep.name,
+                    departmentHead: faculty
+                }).then(updatedDepartment => {
+                    //console.log(updatedDepartment);
+                });
+            }
+        });
+    });
+
+    if(name.length > departmentID.length) {
+        var newDepartments = [];
+        for(var i=departmentID.length; i<name.length; i++) {
+            var newDepartment = {};
+            newDepartment.name = name[i];
+            newDepartment.head = head[i];
+            newDepartments.push(newDepartment);
+        }
+
+        newDepartments.forEach(newDep => {
+            Faculty.findOne({fullName: newDep.head}, function(err, faculty){
+                if(err)
+                    console.log(err);
+                else {
+                    Department.create({
+                        name: newDep.name,
+                        departmentHead: faculty
+                    }).then(newDepart => {
+                        //console.log(newDepart);
+                    });
+                }
+            });
+        });
+    }
+
+    setTimeout(function(){
+        res.redirect("/admin/profile");
+    },2000);
+});
+
 module.exports = router;
