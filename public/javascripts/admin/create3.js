@@ -167,7 +167,7 @@ $('.special-btn').click(function(){
         var classInfo = {};
         classInfo.name = $('#class'+i+'-name').val();
         classInfo.year = $('#class'+i+'-year').val();
-        classInfo.section = $('#class'+i+'-sectiob').val();
+        classInfo.section = $('#class'+i+'-section').val();
         classInfo.strength = $('#class'+i+'-strength').val();
         classInfo.department = $('#class'+i+'-department').val();
         classInfo.build = $('#class'+i+'-building').val();

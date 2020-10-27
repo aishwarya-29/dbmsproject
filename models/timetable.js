@@ -5,9 +5,9 @@ var timetableSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Class"
     },
-    periods: [{
+    slots: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Period"
+        ref: "Slot"
     }]
 });
 

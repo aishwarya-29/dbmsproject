@@ -1,13 +1,13 @@
 var mongoose = require('mongoose');
 
-var periodSchema = mongoose.Schema({
+var slotSchema = mongoose.Schema({
     classID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Class"
     },
     day: String,
     type: String,
-    hour: Number,
+    slot: Number,
     faculty: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Faculty"
@@ -18,4 +18,4 @@ var periodSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("Period", periodSchema);
+module.exports = mongoose.model("Slot", slotSchema);

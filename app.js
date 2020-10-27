@@ -20,7 +20,7 @@ var Course = require('./models/course');
 var Department = require('./models/department');
 var Faculty = require('./models/faculty');
 var Lab = require('./models/lab');
-var Period = require('./models/period');
+var Slot = require('./models/slot');
 var Student = require('./models/student');
 var Timetable = require('./models/timetable');
 var TimetableStructure = require('./models/timetableStructure');
@@ -125,7 +125,10 @@ mongoose.connect(mongoURI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
 })
-.then(() => console.log('DB Connected!'))
+.then(() => {
+  console.log('DB Connected!')
+var ttgen = require('./timetable');
+})
 .catch(err => {
 console.log(err);
 });
