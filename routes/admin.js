@@ -27,7 +27,13 @@ router.post("/logout", function(req,res){
 });
 
 router.get("/create", function(req,res){
-    res.render("admin/create");
+    if(req.user) {
+        if(req.user.name) {
+            res.render("admin/create");
+        }
+    } else {
+        res.render("/users");
+    }
 });
 
 router.post("/create", function(req,res){
