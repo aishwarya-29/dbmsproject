@@ -15,6 +15,10 @@ var slotSchema = mongoose.Schema({
     classroom: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Classroom"
+    },
+    course: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Course"
     }
 });
 

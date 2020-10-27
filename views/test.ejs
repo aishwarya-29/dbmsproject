@@ -1,0 +1,16 @@
+<%- include ("./partials/header") %>
+
+<% timetable.forEach(tt => { %>
+    <% tt.forEach(tt2 => { %>
+        <% if(tt2.day) { %>
+            <%= tt2.day %>
+            <%= tt2.slot %>
+            <%= tt2.course.name %>
+            <%= tt2.faculty.fullName %>
+        <% } else { %>
+            TBD
+        <% } %>
+        <br>
+    <% }) %>
+    <br>
+<% }); %>

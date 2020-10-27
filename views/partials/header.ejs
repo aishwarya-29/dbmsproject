@@ -23,7 +23,11 @@
                 <li class="nav-item pop">
                     <% if(user) {  %>
                     <%     if(user.name) {  %>
-                        <a href="/admin/create" class="nav-link">Create</a>
+                             <% if(user.detailsFilled) { %>
+                                <a href="/admin/view" class="nav-link">View</a>
+                             <% } else { %>
+                                <a href="/admin/create" class="nav-link">Create</a>
+                             <% } %>
                     <%     } else {  %>
                         <a href="/view" class="nav-link">View</a>
                     <%     }  %>

@@ -10,6 +10,7 @@ const Course = require('../models/course');
 const Class = require('../models/class');
 const Classroom = require('../models/classroom');
 const Lab = require('../models/lab');
+const Timetable  = require('../models/timetable');
 
 
 router.get("/login", function(req,res){
@@ -429,6 +430,80 @@ router.get("/profile", function(req,res){
     }
 });
 
+router.get("/view", function(req,res){
+    if(req.user && req.user.name) {
+        setTimeout(function(){
+            Class.find({}).populate('courses').populate('department').populate('defaultBuilding').populate('classAdvisor').exec().then(classes => {
+                res.render("admin/view", {classes: classes});
+            });
+        },2000);
+    } else {
+        res.redirect("/users");
+    }
+});
 
+router.get("/generateTT", function(req,res){
+    if(req.user && req.user.name) {
+        var ttgen = require('../timetable');
+        ttgen.fun();
+        setTimeout(function(){res.redirect("/admin/view");},4000);
+    } else {
+        res.redirect("/users");
+    }
+});
+
+router.post("/test", function(req,res){
+    var tt = [];
+    var year = req.body.year;
+    var section = req.body.section;
+            Class.findOne({year: year, section: req.body.section}).exec().then(cls => {
+                Timetable.findOne({classID: cls}).populate('slots').then(clsTT =>{
+                        clsTT.slots.forEach(slot => {
+                            var ttinstance = {};
+                            ttinstance.day = slot.day;
+                            ttinstance.slot = slot.slot;
+                            ttinstance.faculty = slot.faculty;
+                            ttinstance.course = slot.course;
+                            tt.push(ttinstance);
+                            console.log(ttinstance);
+                        });
+                }).then(x => {
+                    var timetable = [];
+                    var numOfDays, hours;
+                    TimetableStructure.findOne({}).then(ttstructure => {
+                        numOfDays = ttstructure.daysInWeek;
+                        hours = ttstructure.hoursInDay;
+                    }).then(ttstructure => {
+                        for(var i=0; i<numOfDays; i++) {
+                            timetable.push([]);
+                            for(var j=0; j<hours; j++) {
+                                timetable[i].push({});
+                            }
+                        }
+                        console.log(timetable);
+                        var days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+                        tt.forEach(ttc => {
+                            var dayIndex = days.indexOf(ttc.day);
+                            var slotIndex = ttc.slot-1;
+                            timetable[dayIndex][slotIndex].day = dayIndex+1;
+                            timetable[dayIndex][slotIndex].slot = ttc.slot;
+                            Course.findById(ttc.course).exec().then(crse => {
+                                timetable[dayIndex][slotIndex].course = crse;
+                            }).then(x => {
+                                Faculty.findById(ttc.faculty).exec().then(fac => {
+                                    timetable[dayIndex][slotIndex].faculty = fac;
+                                });
+                            });
+                        });
+                        setTimeout(function(){
+                            console.log(timetable);
+                            Class.find({}).populate('courses').populate('department').populate('defaultBuilding').populate('classAdvisor').exec().then(classes => {
+                                res.render("admin/view", {classes: classes, timetable: timetable});
+                            });
+                        }, 2000);
+                    });
+                })
+            });
+});
 
 module.exports = router;

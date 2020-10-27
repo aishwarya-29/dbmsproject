@@ -126,8 +126,7 @@ mongoose.connect(mongoURI, {
   useNewUrlParser: true,
 })
 .then(() => {
-  console.log('DB Connected!')
-var ttgen = require('./timetable');
+  console.log('DB Connected!');
 })
 .catch(err => {
 console.log(err);
@@ -139,7 +138,6 @@ app.use('/users', usersRouter);
 app.use('/admin',adminRouter);
 app.use('/api', apiRouter);
 app.use('/update', updateRouter);
-
 
 app.get("/view", function(req,res){
   if(req.user.id) {
@@ -191,7 +189,14 @@ var admin = new Admin({
   password: "ilovehp"
 });
 
-// Admin.createUser(admin, function(err, newAdmin){
+var admin2 = new Admin({
+  name: "Aishu",
+  email: "test@hogwarts.edu",
+  password: "password",
+  detailsFilled: false
+})
+
+// Admin.createUser(admin2, function(err, newAdmin){
 //   if(err)
 //     console.log(err);
 //   else 

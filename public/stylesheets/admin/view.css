@@ -1,0 +1,52 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+#year, #section {
+    
+}
+
+.special-btn {
+    padding: 3px !important;
+}
+
+h3 {
+    font-family: 'Rubik', sans-serif;
+    color: #457B9D;
+}
+
+.searchbar {
+    background-color: #F1FAEE;
+    padding: 6px 10px;
+    width: 120px;
+    border: none;
+    margin-top: 1px;
+    margin-right: 8px;
+    font-size: 1em;
+    border-bottom: white solid 2px;
+    transition: 0.3s;
+  }
+  
+  .searchbar::placeholder {
+    font-size: 1em;
+    color: #91AFDA;
+    /* transition: 0.2s; */
+  }
+  
+  .searchbar:focus {
+    width: 400px;
+    font-size: 1em;
+    transition: 0.3s;
+    /* Stops the input box from inheriting the styling from the inputs on the request form */
+    border-bottom: white solid 2px;
+    outline: none;
+  }
+  
+  .btn-search {
+    cursor: pointer;
+    color: #1D3557;
+    text-decoration: none !important;
+    font-family: "Segoe UI Light","Segoe UI","Segoe",Tahoma,Helvetica,Arial,sans-serif;
+    font-size: 1.5em;
+    padding-top: 5px;
+    margin-right: 40px;
+  }
