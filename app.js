@@ -11,6 +11,7 @@ var usersRouter  = require('./routes/users');
 var adminRouter  = require('./routes/admin');
 var apiRouter    = require('./routes/api');
 var updateRouter = require('./routes/update');
+var deleteRouter = require('./routes/delete');
 
 var Admin = require('./models/admin');
 var Building = require('./models/building');
@@ -138,6 +139,7 @@ app.use('/users', usersRouter);
 app.use('/admin',adminRouter);
 app.use('/api', apiRouter);
 app.use('/update', updateRouter);
+app.use('/delete', deleteRouter);
 
 app.get("/view", function(req,res){
   if(req.user.id) {

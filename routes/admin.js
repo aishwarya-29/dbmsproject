@@ -223,6 +223,45 @@ router.post("/create/step-2", function(req,res){
     //     }
     // });
 
+    // Building.find({}, function(err, buildings){
+    //   if(err)
+    //     console.log(err);
+    //   else {
+    //     buildings.forEach(function(building){
+    //       var num = building.numberOfClassrooms;
+    //       for(var i=0; i<num; i++) {
+    //         var name = building.name + "-CR" + (i+1);
+    //         Classroom.create({roomNumber: name, building: building}, function(err, clroom){
+    //           if(err)
+    //             console.log(err);
+    //           else {
+    //             console.log(clroom);
+    //           }
+    //         });
+    //       }
+    //     });
+    //   }
+    // });
+
+    // Building.find({}, function(err, buildings){
+    //   if(err)
+    //     console.log(err);
+    //   else {
+    //     buildings.forEach(function(building){
+    //       var num = building.numberOfLabs;
+    //       for(var i=0; i<num; i++) {
+    //         var name = building.name + "-LB" + (i+1);
+    //         Lab.create({labID: name, building: building}, function(err, lb){
+    //             if(err)
+    //               console.log(err);
+    //             else 
+    //               console.log(lb);
+    //         });
+    //       }
+    //     });
+    //   }
+    // });
+
     return res.send(formData);
 });
 
@@ -332,45 +371,6 @@ router.post("/create/step-3", function(req,res){
     //     }
     // });
 
-    // Building.find({}, function(err, buildings){
-    //   if(err)
-    //     console.log(err);
-    //   else {
-    //     buildings.forEach(function(building){
-    //       var num = building.numberOfClassrooms;
-    //       for(var i=0; i<num; i++) {
-    //         var name = building.name + "-CR" + (i+1);
-    //         Classroom.create({roomNumber: name, building: building}, function(err, clroom){
-    //           if(err)
-    //             console.log(err);
-    //           else {
-    //             console.log(clroom);
-    //           }
-    //         });
-    //       }
-    //     });
-    //   }
-    // });
-
-    // Building.find({}, function(err, buildings){
-    //   if(err)
-    //     console.log(err);
-    //   else {
-    //     buildings.forEach(function(building){
-    //       var num = building.numberOfLabs;
-    //       for(var i=0; i<num; i++) {
-    //         var name = building.name + "-LB" + (i+1);
-    //         Lab.create({labID: name, building: building}, function(err, lb){
-    //             if(err)
-    //               console.log(err);
-    //             else 
-    //               console.log(lb);
-    //         });
-    //       }
-    //     });
-    //   }
-    // });
-
     return res.send(formData);
 });
 
@@ -446,7 +446,7 @@ router.get("/generateTT", function(req,res){
     if(req.user && req.user.name) {
         var ttgen = require('../timetable');
         ttgen.fun();
-        setTimeout(function(){res.redirect("/admin/view");},4000);
+        setTimeout(function(){res.redirect("/admin/view");},2000);
     } else {
         res.redirect("/users");
     }

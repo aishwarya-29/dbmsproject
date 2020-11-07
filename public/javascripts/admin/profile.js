@@ -317,8 +317,27 @@ $('#btn2').click(function(){
     $('#Facultyform').submit();
 });
 
-var bubblyButtons = document.getElementsByClassName("bubbly-button");
-  
-for (var i = 0; i < bubblyButtons.length; i++) {
-  bubblyButtons[i].addEventListener('click', animateButton, false);
-}
+
+
+$('.remove').click(function(){
+    var id_full = $(this).attr('id');
+    var id = id_full.split('-')[0];
+    var type = id_full.split('-')[1];
+    var formData = {
+        id: id,
+        type: type
+    }
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: '/delete/'+type,
+        data: JSON.stringify(formData),
+        dataType:"JSON",
+        success: function (data) {
+            window.location.replace('/admin/profile');
+        },
+        error: function (e) {
+            window.location.replace('/admin/profile');
+        }
+    });
+});

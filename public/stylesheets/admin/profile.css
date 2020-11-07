@@ -254,3 +254,11 @@ thead {
 #timetable {
     padding: 4% 2%;
 }
+
+tbody tr:hover {
+    background-color: #D4D4D4;
+}
+
+select {
+    margin-right: 0cm;
+}
