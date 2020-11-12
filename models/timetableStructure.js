@@ -12,7 +12,8 @@ var timetableStructureSchema = mongoose.Schema({
     numOfDepartments: Number,
     numOfBuildings: Number,
     numOfClassrooms: Number,
-    numOfLabs: Number
+    numOfLabs: Number,
+    facultyTT: []
 });
 
 module.exports = mongoose.model("TimetableStructure", timetableStructureSchema);

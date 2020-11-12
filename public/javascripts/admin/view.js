@@ -46,3 +46,7 @@ $(document).ready(function(){
     }
 
 });
+
+$('#btnSearch').click(function(){
+    $('#facform').submit();
+});

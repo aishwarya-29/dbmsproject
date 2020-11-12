@@ -11,6 +11,7 @@ const Class = require('../models/class');
 const Classroom = require('../models/classroom');
 const Lab = require('../models/lab');
 const Timetable  = require('../models/timetable');
+var ttable = require('../timetable');
 
 
 router.get("/login", function(req,res){
@@ -452,7 +453,7 @@ router.get("/generateTT", function(req,res){
     }
 });
 
-router.post("/test", function(req,res){
+router.post("/view/classTT", function(req,res){
     var tt = [];
     var year = req.body.year;
     var section = req.body.section;
@@ -505,5 +506,30 @@ router.post("/test", function(req,res){
                 })
             });
 });
+
+router.post("/view/facultyTT", function(req,res){
+    console.log(req.body);
+    var fac_name = req.body.name;
+    fac_name = fac_name.trim();
+    TimetableStructure.findOne({}).exec().then(tt => {
+        Faculty.find({}).exec().then(faculties => {
+            var index = 0, flag = true;
+            faculties.forEach(fac => {
+                if(fac.fullName == fac_name) {
+                    flag = false;
+                }
+                if(flag)
+                    index++;
+            });
+
+            var facTT = tt.facultyTT[index];
+            //console.log(facTT);
+            Class.find({}).populate('courses').populate('department').populate('defaultBuilding').populate('classAdvisor').exec().then(classes => {
+                res.render("admin/view", {classes: classes, facultyTT: facTT});
+            });
+        });
+    });
+});
+
 
 module.exports = router;

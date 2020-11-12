@@ -323,7 +323,7 @@ function generateNewTimetable() {
         }
     }
     // console.log('------------------------------------------------------');
-    console.log(final_timetable);
+    //console.log(final_timetable);
     
     var final_fac = [];
     
@@ -403,7 +403,17 @@ function generateNewTimetable() {
         }
     }
     
+    exp.facultyTT = faculty_timetable;
         //console.log(faculty_timetable);
+        TimetableStructure.findOne({}, function(err, obj){
+            if(err)
+                console.log(err);
+            else {
+                obj.facultyTT = faculty_timetable;
+                obj.save();
+                console.log(obj);
+            }
+        });
     
         var daysName = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     
