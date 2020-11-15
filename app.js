@@ -78,6 +78,9 @@ passport.use("localstudent", new LocalStrategy({
     Student.findOne({email: email}, function(err, user){
       if(err)
         done(err);
+      if(!user) {
+        done(err);
+      } else {
       Student.comparePassword(password, user.password, function(err, isMatch){
         if(err) {
           done(err);
@@ -87,7 +90,32 @@ passport.use("localstudent", new LocalStrategy({
         } else {
             done(null, false);
         }
-      });
+      }); }
+    }); 
+  }
+));
+
+passport.use("localfaculty", new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password'
+},
+  function(email, password, done) {
+    Faculty.findOne({emailID: email}, function(err, user){
+      if(err)
+        done(err);
+        if(!user) {
+          done(err);
+        } else {
+      Faculty.comparePassword(password, user.password, function(err, isMatch){
+        if(err) {
+          done(err);
+        } 
+        if(isMatch) {
+            done(null,user);
+        } else {
+            done(null, false);
+        }
+      }); }
     })
   }
 ));
@@ -142,15 +170,20 @@ app.use('/update', updateRouter);
 app.use('/delete', deleteRouter);
 
 app.get("/view", function(req,res){
-  if(req.user.id) {
-    res.redirect("/users/faculty-view");
-  } 
-  else if(req.user.fullName) {
-    res.redirect("/users/user-views");
-  }
-  else {
+  if(req.user ){
+    if(req.user.id) {
+      res.redirect("/users/view");
+    } 
+    else if(req.user.fullName) {
+      res.redirect("/users/view");
+    }
+    else {
+      res.redirect("/users");
+    }
+  } else{
     res.redirect("/users");
   }
+  
 });
 
 
@@ -159,7 +192,7 @@ app.get("/profile", function(req,res){
   if(req.user.rollNumber) {
     res.redirect("/users/user-profile");
   } else if(req.user.fullName) {
-    res.send("faculty profile");
+    res.redirect("/users/faculty-profile");
   } else {
     res.redirect("/admin/profile");
   }} else {
@@ -198,11 +231,19 @@ var admin2 = new Admin({
   detailsFilled: false
 })
 
-// Admin.createUser(admin2, function(err, newAdmin){
+// Faculty.findOne({id: 'f002'}, function(err, fac){
 //   if(err)
 //     console.log(err);
-//   else 
-//     console.log(newAdmin);
+//   else {
+//     fac.password = "password";
+//     Faculty.savePassword(fac, function(err, fac2){
+//       if(err)
+//         console.log(err);
+//       else {
+//         console.log(fac2);
+//       }
+//     });
+//   }
 // });
 
 module.exports = app;

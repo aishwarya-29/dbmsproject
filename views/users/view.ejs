@@ -20,7 +20,7 @@
         <% }); %>
         <% years = years.filter(onlyUnique); %>
         <% sections = sections.filter(onlyUnique); %>
-        <form action="/admin/view/classTT" method="POST">
+        <form action="/users/view/classTT" method="POST">
         <div class="row">
             <div class="form-group col-md-6">
                 <label for="year"><strong>Year</strong></label>
@@ -97,7 +97,7 @@
 
     <div class="container">
         <br><h3>View a Faculty timetable</h3><br>
-        <form action="/admin/view/facultyTT" method="POST" id="facform">
+        <form action="/users/view/facultyTT" method="POST" id="facform">
         <input id="searchBar" name="name" class="searchbar facultyList" type="text" placeholder="Search...">
         <a id="btnSearch" class="btn-search"><i class="fa fa-search"></i></a>
         </form>
