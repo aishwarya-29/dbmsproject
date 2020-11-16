@@ -6,37 +6,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <div id="wrapper">
-<<<<<<< HEAD
-          <div id="page-content-wrapper"> 
-              <div class="container" id="head">
-                  <div class="row"> 
-                      <div class="accent-orange-gradient" id="hh">
-                          <h1 style="display: none;" id="facname"><%= username %></h1>
-                          <h1 class="h1home"> Welcome <%= username %></h1>
-                          <div class="accent-cyan-gradient" id="quote">
-                          <script type="text/javascript" class="quotes">
-                              writeRandomQuote = function () {
-                                 var quotes = new Array();
-                                 quotes[0] = "If you are planning for a year, sow rice; if you are planning for a decade, plant trees; if you are planning for a lifetime, educate people.";
-                                 quotes[1] = "If someone is going down the wrong road, he doesn’t need motivation to speed him up. What he needs is education to turn him around.";
-                                 quotes[2] = "Every goal, every action, every thought, every feeling one experiences, whether it be consciously or unconsciously known, is an attempt to increase one’s level of peace of mind.";
-                                 quotes[3] = "Education is the passport to the future, for tomorrow belongs to those who prepare for it today.";
-                                 quotes[4] = "If you think education is expensive, try ignorance.";
-                                 quotes[5] = "We learn more by looking for the answer to a question and not finding it than we do from learning the answer itself.";
-                                 quotes[6] = "If a man empties his purse into his head, no man can take it away from him. An investment in knowledge always pays the best interest.";
-                                 quotes[7] = "A teacher affects eternity; he can never tell where his influence stops.";
-                                 quotes[8] = "Do not confine your children to your own learning, for they were born in another time.";
-                                 quotes[9] = "Example is not the main thing in influencing others. It is the only thing."
-                                 quotes[10] = "The dream begins, most of the time, with a teacher who believes in you, who tugs and pushes and leads you on to the next plateau, sometimes poking you with a sharp stick called truth.";
-                                 var rand = Math.floor(Math.random()*quotes.length);
-                                 document.write('<h2 class="quotes">'+quotes[rand]+'</h2>');
-                              }
-                              writeRandomQuote();
-                           </script>
-                           </div>
-                       </div>              
-                  </div>
-=======
     <div id="page-content-wrapper">
       <div class="container" id="head">
         <div class="row">
@@ -72,7 +41,6 @@
                   <p class="slider__txt"><%=faculty.emailID %></p>
                 </div>
                 <div class="slider__contents"></div>
->>>>>>> 0c3b8e03e482cbe8c40d6cd2c6f676ff3ece4759
               </div>
             </div>
           </div>
@@ -160,60 +128,13 @@
                       <% }) %>
                   <% }); %>
         </div>
-        <div class="content">
-                <% var set1 = new Set(); %>
-                <% facultyTT.forEach(tt => { %>
-                    <% tt.forEach(tt2 => { %>
-                        <% if(tt2) { %>
-                            <% set1.add(tt2[0]) %>
-                            <div>
-                                <div class="<%=tt2[0] %>">
-                                    <%= tt2[0] %> <br>
-                                    <%= tt2[1] %> <br>
-                                    <% var x = tt2[1].split(' '); %>
-                                    <% if(x.length > 1) { %>
-                                        <%= courses[x[1]] %>
-                                    <% } else { %>
-                                        <%= courses[tt2[1]] %>
-                                    <% } %>
-                                </div>
-                            </div>
-                        <% } else { %>
-                            <div class="weekend">
-                                <div >
-                                    Free
-                                </div>
-                            </div>
-                        <% } %>
-                    <% }) %>
-                <% }); %>
+  </div>
+  <% set1.forEach(cid => { %>
+      <div style="display: none;" class="courseid">
+          <%= cid %>
       </div>
-</div>
+    <% }) %>
 
-<br><br><hr><br><br>
-
-<div class="container" id="change">
-    <h2 style="text-align: center; color: #457B9D;">Request for a change in class</h2>
-    <br><br>
-    <label for="class">Choose Class :- &nbsp;</label>
-    <select id="class">
-        <% set1.forEach(s => { %>
-            <option><%= s %></option>
-        <% }); %>
-    </select>
-    <button style="float: right;" id="search" class="btn btn-sm btn-info">Look for free slots</button>
-    <div class="slots">
-
-    </div>
-
-    <br><br>
-</div>
-
-<% set1.forEach(cid => { %>
-    <div style="display: none;" class="courseid">
-        <%= cid %>
-    </div>
-  <% }) %>
 
   <% include ("../partials/footer") %>
   <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
