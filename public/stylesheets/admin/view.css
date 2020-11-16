@@ -32,7 +32,7 @@ h3 {
     /* transition: 0.2s; */
   }
   
-  .searchbar:focus {
+  .xx {
     width: 400px;
     font-size: 1em;
     transition: 0.3s;

@@ -10,6 +10,7 @@
               <div class="container" id="head">
                   <div class="row"> 
                       <div class="accent-orange-gradient" id="hh">
+                          <h1 style="display: none;" id="facname"><%= username %></h1>
                           <h1 class="h1home"> Welcome <%= username %></h1>
                           <div class="accent-cyan-gradient" id="quote">
                           <script type="text/javascript" class="quotes">
@@ -110,7 +111,13 @@
                             <div>
                                 <div class="<%=tt2[0] %>">
                                     <%= tt2[0] %> <br>
-                                    <%= tt2[1] %>
+                                    <%= tt2[1] %> <br>
+                                    <% var x = tt2[1].split(' '); %>
+                                    <% if(x.length > 1) { %>
+                                        <%= courses[x[1]] %>
+                                    <% } else { %>
+                                        <%= courses[tt2[1]] %>
+                                    <% } %>
                                 </div>
                             </div>
                         <% } else { %>
@@ -124,6 +131,26 @@
                 <% }); %>
       </div>
 </div>
+
+<br><br><hr><br><br>
+
+<div class="container" id="change">
+    <h2 style="text-align: center; color: #457B9D;">Request for a change in class</h2>
+    <br><br>
+    <label for="class">Choose Class :- &nbsp;</label>
+    <select id="class">
+        <% set1.forEach(s => { %>
+            <option><%= s %></option>
+        <% }); %>
+    </select>
+    <button style="float: right;" id="search" class="btn btn-sm btn-info">Look for free slots</button>
+    <div class="slots">
+
+    </div>
+
+    <br><br>
+</div>
+
 <% set1.forEach(cid => { %>
     <div style="display: none;" class="courseid">
         <%= cid %>

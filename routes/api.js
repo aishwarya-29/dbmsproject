@@ -94,4 +94,94 @@ router.post("/building", function(req,res){
   });
 });
 
+router.get("/classTT", function(req,res){
+  var tt = [];
+  var classID = req.query.id;
+  Class.findOne({name: classID}).exec().then(cls => {
+    Timetable.findOne({classID: cls}).populate('slots').then(clsTT =>{
+            clsTT.slots.forEach(slot => {
+                var ttinstance = {};
+                ttinstance.day = slot.day;
+                ttinstance.slot = slot.slot;
+                ttinstance.faculty = slot.faculty;
+                ttinstance.course = slot.course;
+                tt.push(ttinstance);
+            });
+    }).then(x => {
+        var timetable = [];
+        var numOfDays, hours;
+        TimetableStructure.findOne({}).then(ttstructure => {
+            numOfDays = ttstructure.daysInWeek;
+            hours = ttstructure.hoursInDay;
+        }).then(ttstructure => {
+            for(var i=0; i<numOfDays; i++) {
+                timetable.push([]);
+                for(var j=0; j<hours; j++) {
+                    timetable[i].push({});
+                }
+            }
+            var days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+            tt.forEach(ttc => {
+                var dayIndex = days.indexOf(ttc.day);
+                var slotIndex = ttc.slot-1;
+                timetable[dayIndex][slotIndex].day = dayIndex+1;
+                timetable[dayIndex][slotIndex].slot = ttc.slot;
+                Course.findById(ttc.course).exec().then(crse => {
+                    timetable[dayIndex][slotIndex].course = crse;
+                }).then(x => {
+                    Faculty.findById(ttc.faculty).exec().then(fac => {
+                        timetable[dayIndex][slotIndex].faculty = fac;
+                    });
+                });
+            });
+            setTimeout(function(){
+                return res.send(timetable);
+            }, 1000);
+        });
+    })
+});
+});
+
+router.get("/facultyTT", function(req,res){
+  var fac_name = req.query.name;
+  fac_name = fac_name.trim();
+  TimetableStructure.findOne({}).exec().then(tt => {
+      Faculty.find({}).exec().then(faculties => {
+          var index = 0, flag = true;
+          faculties.forEach(fac => {
+              if(fac.fullName == fac_name) {
+                  flag = false;
+              }
+              if(flag)
+                  index++;
+          });
+
+          var facTT = tt.facultyTT[index];
+          var cList = new Set();
+          for(var i=0; i<facTT.length; i++) {
+              for(var j=0; j<facTT[i].length; j++) {
+                  var x = facTT[i][j][1];
+                  if(x) {
+                  var x2 = x.split(' ');
+                  if(x2.length > 1) 
+                    cList.add(x2[1])
+                  else 
+                    cList.add(x2[0]);
+                  }
+                    
+              }
+          }
+          var cNames = {};
+          cList.forEach(c => {
+            Course.findOne({id: c}).then(course => {
+                cNames[course.id] = course.name
+            });
+          });
+          setTimeout(function(){
+            return res.send(facTT);
+          },500);
+      });
+  });
+});
+
 module.exports = router;

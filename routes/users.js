@@ -16,7 +16,7 @@ router.get("/", function(req,res){
 });
 
 router.post("/user",passport.authenticate(['localstudent','localfaculty'],{
-  successRedirect: '/',
+  successRedirect: '/profile',
   failureRedirect: '/error'
 }));
 
@@ -88,7 +88,31 @@ router.get("/faculty-profile", function(req,res){
             });
 
             var facTT = tt.facultyTT[index];
-            res.render("users/faculty-profile", {faculty: faculty, facultyTT: facTT});
+            var cList = new Set();
+          for(var i=0; i<facTT.length; i++) {
+              for(var j=0; j<facTT[i].length; j++) {
+                  var x = facTT[i][j][1];
+                  if(x) {
+                  var x2 = x.split(' ');
+                  if(x2.length > 1) 
+                    cList.add(x2[1])
+                  else 
+                    cList.add(x2[0]);
+                  }
+                    
+              }
+          }
+          var cNames = {};
+          cList.forEach(c => {
+            Course.findOne({id: c}).then(course => {
+                cNames[course.id] = course.name
+            });
+          });
+          setTimeout(function(){
+            Class.find({}).populate('courses').populate('department').populate('defaultBuilding').populate('classAdvisor').exec().then(classes => {
+                res.render("users/faculty-profile", {faculty: faculty, facultyTT: facTT, courses: cNames});
+            });
+          },500);
         });
     });
   });
@@ -161,7 +185,6 @@ router.post("/view/classTT", function(req,res){
 });
 
 router.post("/view/facultyTT", function(req,res){
-  console.log(req.body);
   var fac_name = req.body.name;
   fac_name = fac_name.trim();
   TimetableStructure.findOne({}).exec().then(tt => {
@@ -176,21 +199,31 @@ router.post("/view/facultyTT", function(req,res){
           });
 
           var facTT = tt.facultyTT[index];
-          //console.log(facTT);
-          // var courseFac;
-          // for(var i=0; i<facTT.length; i++) {
-          //     for(var j=0; j<facTT[i].length; j++) {
-          //         if(facTT[i][j] != '' || facTT[i][j] != null) {
-          //             var classID = facTT[i][j];
-          //             Class.findOne({name: classID}).then(cls => {
-
-          //             });
-          //         }
-          //     }
-          // }
-          Class.find({}).populate('courses').populate('department').populate('defaultBuilding').populate('classAdvisor').exec().then(classes => {
-              res.render("users/view", {classes: classes, facultyTT: facTT});
+          var cList = new Set();
+          for(var i=0; i<facTT.length; i++) {
+              for(var j=0; j<facTT[i].length; j++) {
+                  var x = facTT[i][j][1];
+                  if(x) {
+                  var x2 = x.split(' ');
+                  if(x2.length > 1) 
+                    cList.add(x2[1])
+                  else 
+                    cList.add(x2[0]);
+                  }
+                    
+              }
+          }
+          var cNames = {};
+          cList.forEach(c => {
+            Course.findOne({id: c}).then(course => {
+                cNames[course.id] = course.name
+            });
           });
+          setTimeout(function(){
+            Class.find({}).populate('courses').populate('department').populate('defaultBuilding').populate('classAdvisor').exec().then(classes => {
+                res.render("users/view", {classes: classes, facultyTT: facTT, courses: cNames});
+            });
+          },500);
       });
   });
 });

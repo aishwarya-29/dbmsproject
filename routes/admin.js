@@ -524,9 +524,33 @@ router.post("/view/facultyTT", function(req,res){
             });
 
             var facTT = tt.facultyTT[index];
-            Class.find({}).populate('courses').populate('department').populate('defaultBuilding').populate('classAdvisor').exec().then(classes => {
-                res.render("admin/view", {classes: classes, facultyTT: facTT});
+            var facTT = tt.facultyTT[index];
+          var cList = new Set();
+          for(var i=0; i<facTT.length; i++) {
+              for(var j=0; j<facTT[i].length; j++) {
+                  var x = facTT[i][j][1];
+                  if(x) {
+                  var x2 = x.split(' ');
+                  if(x2.length > 1) 
+                    cList.add(x2[1])
+                  else 
+                    cList.add(x2[0]);
+                  }
+                    
+              }
+          }
+          console.log(cList);
+          var cNames = [];
+          cList.forEach(c => {
+            Course.findOne({id: c}).then(course => {
+                cNames[course.id] = course.name
             });
+          });
+          setTimeout(function(){
+            Class.find({}).populate('courses').populate('department').populate('defaultBuilding').populate('classAdvisor').exec().then(classes => {
+                res.render("users/view", {classes: classes, facultyTT: facTT, courses: cNames});
+            });
+          }, 500);
         });
     });
 });

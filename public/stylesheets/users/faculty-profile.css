@@ -99,3 +99,28 @@
   float: right !important;
   height: fit-content !important;
 }
+
+#change {
+  width: 70%;
+}
+
+#change, select, option{
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.slots h3, .slots li{
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+h3 {
+  font-weight: bold;
+}
+
+
+.gradient {
+  display: inline-block;
+  background-color: #457B9D;
+  color: white;
+  padding: 0% 2%;
+  margin: 1% 3%;
+}

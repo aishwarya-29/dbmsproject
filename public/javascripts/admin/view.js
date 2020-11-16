@@ -47,6 +47,11 @@ $(document).ready(function(){
 
 });
 
+$('.searchbar').click(function(){
+    $('.searchbar').toggleClass('xx');
+});
+
 $('#btnSearch').click(function(){
+    $('.searchbar').focus();
     $('#facform').submit();
 });
