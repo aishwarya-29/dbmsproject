@@ -25,7 +25,6 @@ $.ajax({
         facultyTT = data;
     },
     error: function (e) {
-        alert("Error!")
         console.log("ERROR: ", e);
     }
 });
@@ -43,7 +42,6 @@ $('#search').click(function(){
             checkFree();
         },
         error: function (e) {
-            alert("Error!")
             console.log("ERROR: ", e);
         }
     });
