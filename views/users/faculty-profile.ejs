@@ -76,6 +76,13 @@
               writeRandomQuote();
             </script>
           </div>
+          <div class="endwrapper">    
+            <br /><br />
+            <form action="/users/logout" method="POST">
+              <button style="float: right" class="btn btn-dark" type="submit" id="submit-btn">Logout</button>
+            </form>
+            <br /><br />
+        </div>
         </div>
       </div>
     </div>
@@ -127,13 +134,7 @@
           <%= cid %>
       </div>
     <% }) %>
-    <div class="endwrapper">    
-        <br /><br />
-        <form action="/users/logout" method="POST">
-          <button style="float: right" class="btn btn-dark" type="submit" id="submit-btn">Logout</button>
-        </form>
-        <br /><br />
-    </div>
+
 
   <% include ("../partials/footer") %>
   <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>

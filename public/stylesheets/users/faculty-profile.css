@@ -251,7 +251,9 @@ body {
   height: fit-content !important;
 }
 .endwrapper {
-  position: absolute;
+  position: fixed;
+  display: block;
   bottom: 10px;
-  float: right;
+  margin-left: 90%;
+  margin-right: auto;
 }
