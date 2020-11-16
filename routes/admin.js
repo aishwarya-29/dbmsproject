@@ -13,6 +13,7 @@ const Lab = require('../models/lab');
 var Student = require('../models/student');
 const Timetable  = require('../models/timetable');
 var ttable = require('../timetable');
+const student = require('../models/student');
 
 
 router.get("/login", function(req,res){
@@ -411,6 +412,11 @@ router.get("/profile", function(req,res){
                                                                         console.log(err);
                                                                     else {
                                                                         res.render("admin/profile",{admin: req.user, buildings: buildings, departments: departments, classes: classes, faculties: faculties, courses: courses, classrooms: classrooms, labs: labs, structure: ttstructure[0]});
+                                                                        if(err)
+                                                                            console.log(err);
+                                                                        else {
+                                                                            //Do something aish
+                                                                        }
                                                                     }
                                                                 });
                                                             }
