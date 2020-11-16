@@ -1,215 +1,159 @@
 <%- include ("../partials/header") %>
 <head>
-    <link rel="stylesheet" href="/stylesheets/users/faculty-profile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/view/index.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/admin/view.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
-  <div id="wrapper">
-        <div id="page-content-wrapper">
-              <div class="container">
-                  <div class="row">
-                      <div class="col-lg-8 col-lg-offset-2">
-                        <div class="container">
-                            <div class="container" id="head">
-                                <h3 style="text-align: right;">Your Timetable</h3>
-                                <br><br>
-                            </div>
-                            <div class="timetable">
-                                <div class="week-names">
-                                  <div>monday</div>
-                                  <div>tuesday</div>
-                                  <div>wednesday</div>
-                                  <div>thursday</div>
-                                  <div>friday</div>
+
+<div class="container">
+    <div class="container">
+        <br><h3>View a Class timetable</h3> <br>
+        <% function onlyUnique(value, index, self) { %>
+        <%     return self.indexOf(value) === index; %>
+        <%   } %>
+        <% var years = []; %>
+        <% var sections = []; %>
+        <% classes.forEach(cls => { %>
+        <%     years.push(cls.year); %>
+        <%     sections.push(cls.section); %>
+        <% }); %>
+        <% years = years.filter(onlyUnique); %>
+        <% sections = sections.filter(onlyUnique); %>
+        <form action="/admin/view/classTT" method="POST">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="year"><strong>Year</strong></label>
+                <select class="form-control" name="year" id="year">
+                    <% years.forEach(year => { %>
+                        <option><%=year%></option>
+                    <% }); %>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="section"><strong>Section</strong></label>
+                <select class="form-control" name="section" id="section">
+                    <% sections.forEach(section => { %>
+                        <option><%=section%></option>
+                    <% }); %>
+                </select>
+            </div>
+        </div>
+        <button style="float: right" class="special-btn" id="classtt">View</button><br><br>
+        </form>
+    </div>
+    <hr>
+
+    <% if(typeof timetable !== 'undefined') { %>
+    <div class="container">
+        <div class="timetable">
+            <div class="week-names">
+                <div>9:00 - 10:00</div>
+              <div>10:00 - 11:00</div>
+              <div>11:00 - 12:00</div>
+              <div>12:00 - 13:00</div>
+              <div>14:00 - 15:00</div>
+              <div>15:00 - 16:00</div>
+            </div>
+            <div class="time-interval">
+                <div>monday</div>
+                <div>tuesday</div>
+                <div>wednesday</div>
+                <div>thursday</div>
+                <div>friday</div>
+            </div>
+            <div class="content">
+                    <% var set1 = new Set(); %>
+                    <% timetable.forEach(tt => { %>
+                        <% tt.forEach(tt2 => { %>
+                            <% if(tt2.day) { %>
+                                <% set1.add(tt2.course.id) %>
+                                <div>
+                                    <div class="<%=tt2.course.id%>">
+                                        <%= tt2.course.id %>
+                                        <br> <%= tt2.course.name %> <br>
+                                        <%= tt2.faculty.fullName %>
+                                    </div>
                                 </div>
-                                <div class="time-interval">
-                                  <div>9:00 - 10:00</div>
-                                  <div>10:00 - 11:00</div>
-                                  <div>11:00 - 12:00</div>
-                                  <div>12:00 - 13:00</div>
-                                  <div>14:00 - 15:00</div>
-                                  <div>15:00 - 16:00</div>
+                            <% } else { %>
+                                <div class="weekend">
+                                    <div >
+                                        Free
+                                    </div>
                                 </div>
-                                <div class="content">
-                                  <div>
-                                    <div class="accent-blue-gradient">
-                                        15CSE18302
-                                        <br> Potions <br>
-                                        III CSE - D
-                                    </div>
-                                  </div>
-                                  <div>
-                                    <div></div>
-                                  </div>
-                                  <div>
-                                    <div></div>
-                                  </div>
-                                  <div></div>
-                                      <div>
-                                    <div class="accent-blue-gradient">
-                                        15CSE18302
-                                        <br> Potions <br>
-                                        III CSE - D
-                                    </div>
-                                  </div>
-                                  <div></div>
-                                  <div>
-                                    <div></div>
-                                  </div>
-                                  <div>
-                                    <div class="accent-blue-gradient">
-                                        15CSE18302
-                                        <br> Potions <br>
-                                        III CSE - D
-                                    </div>
-                                  </div>
-                                  <div>
-                                    <div class="accent-cyan-gradient">
-                                        15CSE001
-                                        <br>Transfiguration<br>
-                                        I CSE - A
-                                    </div>
-                                  </div>
-                                  <div>
-                                    <div></div>
-                                  </div>
-                                  <div>
-                                    <div class="accent-bleu-gradient">
-                                        15CSE381
-                                        <br>Potions Lab<br>
-                                        III CSE - D
-                                    </div>
-                                  </div>
-                                  <div>
-                                    <div class="accent-bleu-gradient">
-                                        15CSE381
-                                        <br>Potions Lab<br>
-                                        III CSE - D
-                                    </div>
-                                  </div>
-                                  <div>
-                                    <div></div>
-                                  </div>
-                                  <div>
-                                    <div></div>
-                                  </div>
-                                  <div></div>
-                                  <div>
-                                    <div></div>
-                                  </div>
-                                  <div></div>
-                                  <div>
-                                    <div class="accent-cyan-gradient">
-                                        15CSE001 
-                                        <br>Transfiguration<br>
-                                        I CSE - A
-                                    </div>
-                                  </div>
-                                  <div></div>
-                                  <div>
-                                    <div></div>
-                                  </div>
-                                  <div>
-                                    <div></div>
-                                  </div>
-                                  <div>
-                                    <div class="accent-blue-gradient">
-                                        15CSE18302
-                                        <br> Potions <br>
-                                        III CSE - D
-                                    </div>
-                                  </div>
-                                  <div></div>
-                                  <div></div>
-                                  <div>
-                                    <div class="accent-cyan-gradient">
-                                        15CSE001
-                                        <br>Transfiguration<br>
-                                        I CSE - A
-                                    </div>
-                                  </div>
-                                  <div>
-                                    
-                                  </div>
-                                  <div>
-                                    <div class="accent-cyan-gradient">
-                                        15CSE001 
-                                        <br>Transfiguration<br>
-                                        I CSE - A
-                                    </div>
-                                  </div>
-                                  <div></div>
-                                  <div>
-                                    <div></div>
-                                  </div>
-                                  <div>
-                                    <div class="accent-class-gradient">
-                                        -
-                                        <br> MENTORING <br>
-                                        III CSE - D
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                        </div>
-                      </div>
-                  </div>
-              </div>
+                            <% } %>
+                        <% }) %>
+                    <% }); %>
           </div>
-          <!-- /#page-content-wrapper -->
-          <hr style="width: 80%">
-<br>
-<div class="container" id="viewanother">
-    <h4>View another Timetable</h4>
-    <form>
-        <div class="form-group">
-            <label for="sel1">Course</label>
-            <select class="form-control" id="sel1">
-              <option>BTech</option>
-              <option>MTech</option>
-              <option>MBA</option>
-              <option>Int. Sci.</option>
-            </select>
+    </div>
+    <% set1.forEach(cid => { %>
+        <div style="display: none;" class="courseid">
+            <%= cid %>
         </div>
-        <div class="form-group">
-            <label for="sel1">Branch</label>
-            <select class="form-control" id="sel1">
-              <option>AEE</option>
-              <option>AIE</option>
-              <option>CHE</option>
-              <option>CIE</option>
-              <option>CSE</option>
-              <option>ECE</option>
-              <option>EEE</option>
-              <option>EIE</option>
-              <option>MEE</option>
-            </select>
+      <% }) %>
+    <% } %>
+
+    
+
+    <div class="container">
+        <br><h3>View a Faculty timetable</h3><br>
+        <form action="/admin/view/facultyTT" method="POST" id="facform">
+        <input id="searchBar" name="name" class="searchbar facultyList" type="text" placeholder="Search...">
+        <a id="btnSearch" class="btn-search"><i class="fa fa-search"></i></a>
+        </form>
+        
+    </div>
+
+    <% if(typeof facultyTT !== 'undefined') { %>
+        <div class="container">
+            <div class="timetable">
+                <div class="week-names">
+                    <div>9:00 - 10:00</div>
+                  <div>10:00 - 11:00</div>
+                  <div>11:00 - 12:00</div>
+                  <div>12:00 - 13:00</div>
+                  <div>14:00 - 15:00</div>
+                  <div>15:00 - 16:00</div>
+                </div>
+                <div class="time-interval">
+                    <div>monday</div>
+                    <div>tuesday</div>
+                    <div>wednesday</div>
+                    <div>thursday</div>
+                    <div>friday</div>
+                </div>
+                <div class="content">
+                        <% var set1 = new Set(); %>
+                        <% facultyTT.forEach(tt => { %>
+                            <% tt.forEach(tt2 => { %>
+                                <% if(tt2) { %>
+                                    <% set1.add(tt2) %>
+                                    <div>
+                                        <div class="<%=tt2 %>">
+                                            <%= tt2 %>
+                                        </div>
+                                    </div>
+                                <% } else { %>
+                                    <div class="weekend">
+                                        <div >
+                                            Free
+                                        </div>
+                                    </div>
+                                <% } %>
+                            <% }) %>
+                        <% }); %>
+              </div>
         </div>
-        <div class="form-group">
-            <label for="sel1">Semester</label>
-            <select class="form-control" id="sel1">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="sel1">Section</label>
-            <select class="form-control" id="sel1">
-              <option>A</option>
-              <option>B</option>
-              <option>C</option>
-              <option>D</option>
-              <option>E</option>
-            </select>
-        </div>
-        <button class="btn btn-sm btn-info"><a href="/view">View</a></button>
-    </form>
-      </div>
-<% include ("../partials/footer") %>
-<script  src="/javascripts/users/teacherProfile.js"></script>
-  
-  
+        <% set1.forEach(cid => { %>
+            <div style="display: none;" class="courseid">
+                <%= cid %>
+            </div>
+          <% }) %>
+        <% } %>
+
+</div>
+
+<%- include ("../partials/footer") %>
+<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript" src="../javascripts/admin/view.js"></script>

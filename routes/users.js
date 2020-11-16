@@ -24,18 +24,9 @@ router.get("/faculty-views", function(req,res)
 {
   res.render("users/faculty-views");
 });
-router.get("/faculty-dashboard", function(req,res)
-{
-  res.render("users/faculty-dashboard");
-});
 router.get("/user-views", function(req,res)
 {
   res.render("users/user-views");
 });
-router.get("/user-dashboard", function(req,res)
-{
-  res.render("users/user-dashboard");
-});
-
 
 module.exports = router;
