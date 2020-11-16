@@ -90,13 +90,60 @@
             <div>thursday</div>
             <div>friday</div>
         </div>
-  </div>
-  <% set1.forEach(cid => { %>
-      <div style="display: none;" class="courseid">
-          <%= cid %>
+        <div class="content">
+                <% var set1 = new Set(); %>
+                <% facultyTT.forEach(tt => { %>
+                    <% tt.forEach(tt2 => { %>
+                        <% if(tt2) { %>
+                            <% set1.add(tt2[0]) %>
+                            <div>
+                                <div class="<%=tt2[0] %>">
+                                    <%= tt2[0] %> <br>
+                                    <%= tt2[1] %> <br>
+                                    <% var x = tt2[1].split(' '); %>
+                                    <% if(x.length > 1) { %>
+                                        <%= courses[x[1]] %>
+                                    <% } else { %>
+                                        <%= courses[tt2[1]] %>
+                                    <% } %>
+                                </div>
+                            </div>
+                        <% } else { %>
+                            <div class="weekend">
+                                <div >
+                                    Free
+                                </div>
+                            </div>
+                        <% } %>
+                    <% }) %>
+                <% }); %>
       </div>
-    <% }) %>
+</div>
 
+<br><br><hr><br><br>
+
+<div class="container" id="change">
+    <h2 style="text-align: center; color: #457B9D;">Request for a change in class</h2>
+    <br><br>
+    <label for="class">Choose Class :- &nbsp;</label>
+    <select id="class">
+        <% set1.forEach(s => { %>
+            <option><%= s %></option>
+        <% }); %>
+    </select>
+    <button style="float: right;" id="search" class="btn btn-sm btn-info">Look for free slots</button>
+    <div class="slots">
+
+    </div>
+
+    <br><br>
+</div>
+
+<% set1.forEach(cid => { %>
+    <div style="display: none;" class="courseid">
+        <%= cid %>
+    </div>
+  <% }) %>
 
   <% include ("../partials/footer") %>
   <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
