@@ -395,7 +395,7 @@ function generateNewTimetable() {
             for(var k=0; k<final_fac[i][j].length; k++) {
                 for(var l=0; l<faculty.length; l++) {
                     if(faculty[l].name == final_fac[i][j][k]) {
-                        faculty_timetable[l][j][k] = classes[i].name;
+                        faculty_timetable[l][j][k] = [classes[i].name, final_timetable[i][j][k]];
                         break;
                     }
                 }
@@ -404,7 +404,7 @@ function generateNewTimetable() {
     }
     
     exp.facultyTT = faculty_timetable;
-        //console.log(faculty_timetable);
+        console.log(faculty_timetable);
         TimetableStructure.findOne({}, function(err, obj){
             if(err)
                 console.log(err);

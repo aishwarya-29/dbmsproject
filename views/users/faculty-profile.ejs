@@ -1,37 +1,141 @@
 <%- include ("../partials/header") %>
 <head>
     <link rel="stylesheet" href="/stylesheets/users/faculty-profile.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/view/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <div id="wrapper">
-          <div id="page-content-wrapper"> 
-              <div class="container">
-                  <div class="row"> 
-                      <div class="accent-orange-gradient">
-                          <h1 class="h1home"> Welcome McGonagall</h1>
-                          <script type="text/javascript" class="quotes">
-                              writeRandomQuote = function () {
-                                 var quotes = new Array();
-                                 quotes[0] = "If you are planning for a year, sow rice; if you are planning for a decade, plant trees; if you are planning for a lifetime, educate people.";
-                                 quotes[1] = "If someone is going down the wrong road, he doesn’t need motivation to speed him up. What he needs is education to turn him around.";
-                                 quotes[2] = "Every goal, every action, every thought, every feeling one experiences, whether it be consciously or unconsciously known, is an attempt to increase one’s level of peace of mind.";
-                                 quotes[3] = "Education is the passport to the future, for tomorrow belongs to those who prepare for it today.";
-                                 quotes[4] = "If you think education is expensive, try ignorance.";
-                                 quotes[5] = "We learn more by looking for the answer to a question and not finding it than we do from learning the answer itself.";
-                                 quotes[6] = "If a man empties his purse into his head, no man can take it away from him. An investment in knowledge always pays the best interest.";
-                                 quotes[7] = "A teacher affects eternity; he can never tell where his influence stops.";
-                                 quotes[8] = "Do not confine your children to your own learning, for they were born in another time.";
-                                 quotes[9] = "Example is not the main thing in influencing others. It is the only thing."
-                                 quotes[10] = "The dream begins, most of the time, with a teacher who believes in you, who tugs and pushes and leads you on to the next plateau, sometimes poking you with a sharp stick called truth.";
-                                 var rand = Math.floor(Math.random()*quotes.length);
-                                 document.write('<h2 class="quotes">'+quotes[rand]+'</h2>');
-                              }
-                              writeRandomQuote();
-                           </script>
-                       </div>              
-                       <img src="/images/logo.png" class="image1">
-                  </div>
+    <div id="page-content-wrapper">
+      <div class="container" id="head">
+        <div class="row">
+          <div class="box">
+            <div class="slider">
+              <input
+                type="radio"
+                name="slider"
+                title="slide1"
+                checked="checked"
+                class="slider__nav"
+              />
+              <input type="radio" name="slider" title="slide2" class="slider__nav" />
+              <input type="radio" name="slider" title="slide3" class="slider__nav" />
+              <div class="slider__inner">
+                <div class="slider__contents">
+                  <i class="slider__image fas fa-home"></i>
+                  <h2 class="slider__caption">NAME</h2>
+                  <p class="slider__txt"><%=faculty.fullName %></p>
+                  <h2 class="slider__caption">FACULTY ID</h2>
+                  <p class="slider__txt"><%=faculty.id %></p>
+                </div>
+                <div class="slider__contents">
+                  <i class="slider__image fab fa-buffer"></i>
+                  <h2 class="slider__caption">Subjects</h2>
+                  <p class="slider__txt">
+                    <% faculty.courses.forEach(course => { %> <%= course.name %><% }) %>
+                  </p>
+                </div>
+                <div class="slider__contents">
+                  <i class="slider__image fas fa-portrait"></i>
+                  <h2 class="slider__caption">EMAIL</h2>
+                  <p class="slider__txt"><%=faculty.emailID %></p>
+                </div>
+                <div class="slider__contents"></div>
               </div>
+            </div>
           </div>
+          <div class="accent-orang-gradient">
+            <script type="text/javascript" class="quotes">
+              writeRandomQuote = function () {
+                var quotes = new Array();
+                quotes[0] =
+                  'If you are planning for a year, sow rice; if you are planning for a decade, plant trees; if you are planning for a lifetime, educate people.';
+                quotes[1] =
+                  'If someone is going down the wrong road, he doesn’t need motivation to speed him up. What he needs is education to turn him around.';
+                quotes[2] =
+                  'Every goal, every action, every thought, every feeling one experiences, whether it be consciously or unconsciously known, is an attempt to increase one’s level of peace of mind.';
+                quotes[3] =
+                  'You can get help from teachers, but you are going to have to learn a lot by yourself, sitting alone in a room.';
+                quotes[4] =
+                  'Keep away from people who try to belittle your ambitions. Small people always do that, but the really great make you feel that you, too, can become great.';
+                quotes[5] =
+                  'We learn more by looking for the answer to a question and not finding it than we do from learning the answer itself.';
+                quotes[6] =
+                  'If a man empties his purse into his head, no man can take it away from him. An investment in knowledge always pays the best interest.';
+                quotes[7] =
+                  'The secret of getting ahead is getting started. The secret of getting started is breaking your complex overwhelming tasks into small manageable tasks, and then starting on the first one.';
+                quotes[8] =
+                  'We learn more by looking for the answer to a question and not finding it than we do from learning the answer itself.';
+                quotes[9] =
+                  "If you don't design your own life plan, chances are you'll fall into someone else's plan. And guess what they have planned for you? Not much.";
+                quotes[10] =
+                  'The dream begins, most of the time, with a teacher who believes in you, who tugs and pushes and leads you on to the next plateau, sometimes poking you with a sharp stick called truth.';
+                var rand = Math.floor(Math.random() * quotes.length);
+                document.write('<h2 class="quotes">' + quotes[rand] + '</h2>');
+              };
+              writeRandomQuote();
+            </script>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <h2 style="text-align: center; color: #184866;">Your Timetable</h2> <br>
+  <div class="container">
+      <div class="timetable">
+          <div class="week-names">
+              <div>9:00 - 10:00</div>
+            <div>10:00 - 11:00</div>
+            <div>11:00 - 12:00</div>
+            <div>12:00 - 13:00</div>
+            <div>14:00 - 15:00</div>
+            <div>15:00 - 16:00</div>
+          </div>
+          <div class="time-interval">
+              <div>monday</div>
+              <div>tuesday</div>
+              <div>wednesday</div>
+              <div>thursday</div>
+              <div>friday</div>
+          </div>
+          <div class="content">
+                  <% var set1 = new Set(); %>
+                  <% facultyTT.forEach(tt => { %>
+                      <% tt.forEach(tt2 => { %>
+                          <% if(tt2) { %>
+                              <% set1.add(tt2[0]) %>
+                              <div>
+                                  <div class="<%=tt2[0] %>">
+                                      <%= tt2[0] %> <br>
+                                      <%= tt2[1] %>
+                                  </div>
+                              </div>
+                          <% } else { %>
+                              <div class="weekend">
+                                  <div >
+                                      Free
+                                  </div>
+                              </div>
+                          <% } %>
+                      <% }) %>
+                  <% }); %>
+        </div>
+  </div>
+  <% set1.forEach(cid => { %>
+      <div style="display: none;" class="courseid">
+          <%= cid %>
+      </div>
+    <% }) %>
+    <div class="endwrapper">    
+        <br /><br />
+        <form action="/users/logout" method="POST">
+          <button style="float: right" class="btn btn-dark" type="submit" id="submit-btn">Logout</button>
+        </form>
+        <br /><br />
+    </div>
+
   <% include ("../partials/footer") %>
+  <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   <script  src="/javascripts/users/teacherProfile.js"></script>

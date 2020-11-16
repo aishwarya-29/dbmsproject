@@ -10,6 +10,7 @@ const Course = require('../models/course');
 const Class = require('../models/class');
 const Classroom = require('../models/classroom');
 const Lab = require('../models/lab');
+var Student = require('../models/student');
 const Timetable  = require('../models/timetable');
 var ttable = require('../timetable');
 const student = require('../models/student');
@@ -529,7 +530,6 @@ router.post("/view/facultyTT", function(req,res){
             });
 
             var facTT = tt.facultyTT[index];
-            //console.log(facTT);
             Class.find({}).populate('courses').populate('department').populate('defaultBuilding').populate('classAdvisor').exec().then(classes => {
                 res.render("admin/view", {classes: classes, facultyTT: facTT});
             });
