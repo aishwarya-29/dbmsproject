@@ -8,6 +8,7 @@ var faculties = [];
 var courses = [];
 var departments = [];
 var buildings = [];
+var students =[];
 
 $(document).ready(function(){
     var formData = {

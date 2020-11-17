@@ -1,264 +1,267 @@
 .form-control:focus {
-    border-color: inherit;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 
 body {
-    font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 #sidenav {
-    background: linear-gradient(-45deg, #F1FAEE, #A8DADC, #457B9D, #1D3557);
-    background-size: 700% 700%;
-    animation: gradient 15s ease infinite;
-    padding: 5% 2%;
+  background: linear-gradient(-45deg, #f1faee, #a8dadc, #457b9d, #1d3557);
+  background-size: 700% 700%;
+  animation: gradient 15s ease infinite;
+  padding: 5% 2%;
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
-
 .link {
-    display: block;
-    font-family: 'Rubik', sans-serif;
-    color: white !important;
-    margin-bottom: 6px;
+  display: block;
+  font-family: 'Rubik', sans-serif;
+  color: white !important;
+  margin-bottom: 6px;
 }
 
 .link:hover {
-    text-decoration: underline !important;  
-    cursor:pointer !important;
+  text-decoration: underline !important;
+  cursor: pointer !important;
 }
 
 .det {
-    display: none;
-    padding: 5% 3%;
+  display: none;
+  padding: 5% 3%;
 }
 
 h3 {
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: 20px;
-    font-weight: bold;
-    color: #1D3557;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #1d3557;
 }
 
 input {
-    width: 400px !important;
-    margin-bottom: 5%;
-    border-radius: 0% !important;
-    font-family: 'Montserrat', sans-serif;
+  width: 400px !important;
+  margin-bottom: 5%;
+  border-radius: 0% !important;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #Adminform {
-    margin: auto;
-    width: fit-content;
-    font-family: 'Montserrat', sans-serif;
+  margin: auto;
+  width: fit-content;
+  font-family: 'Montserrat', sans-serif;
 }
-#cont{
-    -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+#cont {
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
 }
 
 .focus {
-    color: #1D3557 !important;
-    text-shadow: 0 0 3px #A8DADC, 0 0 5px #A8DADC;
+  color: #1d3557 !important;
+  text-shadow: 0 0 3px #a8dadc, 0 0 5px #a8dadc;
 }
 
 #Admindetails {
-    display: block;
+  display: block;
 }
 
 .special-btn {
-    padding: 4px;
+  padding: 4px;
 }
 
 .special-btn:hover,
 .special-btn:focus {
-    background: #1D3557;
-    color: #ffffff !important;
-    font-weight: 100 !important;
+  background: #1d3557;
+  color: #ffffff !important;
+  font-weight: 100 !important;
 }
 
 .form2 {
-    width: 100px !important;
+  width: 100px !important;
 }
 
-input[type=checkbox] {
-    width: fit-content !important;
-    display: inline !important;
-    margin-left: 10px !important;
+input[type='checkbox'] {
+  width: fit-content !important;
+  display: inline !important;
+  margin-left: 10px !important;
 }
 
-input[type=number] {
-    width: 70px !important;
+input[type='number'] {
+  width: 70px !important;
 }
 
 select {
-    width: max-content !important;
+  width: max-content !important;
 }
 
 .form3 {
-    width: max-content !important;
+  width: max-content !important;
 }
 
-.form2:focus, .form3:focus {
-    border: 1px solid black;
+.form2:focus,
+.form3:focus {
+  border: 1px solid black;
 }
 
 .lst {
-    width: 400px !important;
+  width: 400px !important;
 }
 
 .list-item {
-    background-color: #D3EDEE;
-    margin: 4px 3px;
-    padding: 3px 3px;
-    border-radius: 9px;
-    cursor: pointer;
+  background-color: #d3edee;
+  margin: 4px 3px;
+  padding: 3px 3px;
+  border-radius: 9px;
+  cursor: pointer;
 }
 
 .selected-list-item {
-    background-color: #296668 ;
-    color: white;
+  background-color: #296668;
+  color: white;
 }
 
 select:focus {
-    border: 1px solid black !important;
+  border: 1px solid black !important;
 }
 
-input[type=time] {
-    width: 200px !important;
+input[type='time'] {
+  width: 200px !important;
 }
 
 thead {
-    background-color: #1D3557 ;
-    color: white;
+  background-color: #1d3557;
+  color: white;
 }
 
 #timetable h1 {
-    font-family: 'Rubik', sans-serif;
+  font-family: 'Rubik', sans-serif;
 }
 
-.bubbly-button{
-    font-family: 'Rubik', sans-serif;
-    display: inline-block;
-    font-size: 1em;
-    padding: 1em 2em;
-    margin: auto;
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: #457B9D;
-    color: #fff;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
-    box-shadow: 0 2px 25px #2B4D61;
+.bubbly-button {
+  font-family: 'Rubik', sans-serif;
+  display: inline-block;
+  font-size: 1em;
+  padding: 1em 2em;
+  margin: auto;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #457b9d;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  box-shadow: 0 2px 25px #2b4d61;
 }
 
 .bubbly-button:focus {
-      outline: 0;
-    }
-    
-.bubbly-button:before, .bubbly-button:after{
-      position: absolute;
-      content: '';
-      display: block;
-      width: 140%;
-      height: 100%;
-      left: -20%;
-      z-index: -1000;
-      transition: all ease-in-out 0.5s;
-      background-repeat: no-repeat;
+  outline: 0;
 }
-.bubbly-button:before{
-    display: none;
-    top: -75%;
-    background-image:  
-    radial-gradient(circle, #457B9D 20%, transparent 20%),
-    radial-gradient(circle,  transparent 20%, #457B9D 20%, transparent 30%),
-    radial-gradient(circle, #457B9D 20%, transparent 20%), 
-    radial-gradient(circle, #457B9D 20%, transparent 20%),
-    radial-gradient(circle,  transparent 10%, #457B9D 15%, transparent 20%),
-    radial-gradient(circle, #457B9D 20%, transparent 20%),
-    radial-gradient(circle, #457B9D 20%, transparent 20%),
-    radial-gradient(circle, #457B9D 20%, transparent 20%),
-    radial-gradient(circle, #457B9D 20%, transparent 20%);
-      background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
-}
-  
-.bubbly-button:after{
-    display: none;
-    bottom: -75%;
-    background-image:  
-    radial-gradient(circle, #457B9D 20%, transparent 20%), 
-    radial-gradient(circle, #457B9D 20%, transparent 20%),
-    radial-gradient(circle,  transparent 10%, #457B9D 15%, transparent 20%),
-    radial-gradient(circle, #457B9D 20%, transparent 20%),
-    radial-gradient(circle, #457B9D 20%, transparent 20%),
-    radial-gradient(circle, #457B9D 20%, transparent 20%),
-    radial-gradient(circle, #457B9D 20%, transparent 20%);
-  background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
-  }
- 
-.bubbly-button:active{
-    transform: scale(0.9);
-    background-color: darken(#457B9D, 5%);
-    box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
-  }
-  
-  .bubbly-button.animate:before{
-      display: block;
-      animation: topBubbles ease-in-out 0.75s forwards;
-    }
-    .bubbly-button.animate:after{
-      display: block;
-      animation: bottomBubbles ease-in-out 0.75s forwards;
-    }
 
+.bubbly-button:before,
+.bubbly-button:after {
+  position: absolute;
+  content: '';
+  display: block;
+  width: 140%;
+  height: 100%;
+  left: -20%;
+  z-index: -1000;
+  transition: all ease-in-out 0.5s;
+  background-repeat: no-repeat;
+}
+.bubbly-button:before {
+  display: none;
+  top: -75%;
+  background-image: radial-gradient(circle, #457b9d 20%, transparent 20%),
+    radial-gradient(circle, transparent 20%, #457b9d 20%, transparent 30%),
+    radial-gradient(circle, #457b9d 20%, transparent 20%),
+    radial-gradient(circle, #457b9d 20%, transparent 20%),
+    radial-gradient(circle, transparent 10%, #457b9d 15%, transparent 20%),
+    radial-gradient(circle, #457b9d 20%, transparent 20%),
+    radial-gradient(circle, #457b9d 20%, transparent 20%),
+    radial-gradient(circle, #457b9d 20%, transparent 20%),
+    radial-gradient(circle, #457b9d 20%, transparent 20%);
+  background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
+}
+
+.bubbly-button:after {
+  display: none;
+  bottom: -75%;
+  background-image: radial-gradient(circle, #457b9d 20%, transparent 20%),
+    radial-gradient(circle, #457b9d 20%, transparent 20%),
+    radial-gradient(circle, transparent 10%, #457b9d 15%, transparent 20%),
+    radial-gradient(circle, #457b9d 20%, transparent 20%),
+    radial-gradient(circle, #457b9d 20%, transparent 20%),
+    radial-gradient(circle, #457b9d 20%, transparent 20%),
+    radial-gradient(circle, #457b9d 20%, transparent 20%);
+  background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
+}
+
+.bubbly-button:active {
+  transform: scale(0.9);
+  background-color: darken(#457b9d, 5%);
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+}
+
+.bubbly-button.animate:before {
+  display: block;
+  animation: topBubbles ease-in-out 0.75s forwards;
+}
+.bubbly-button.animate:after {
+  display: block;
+  animation: bottomBubbles ease-in-out 0.75s forwards;
+}
 
 @keyframes topBubbles {
-  0%{
-    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
+  0% {
+    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%,
+      70% 90%;
   }
-    50% {
-      background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;}
- 100% {
-    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
-  background-size: 0% 0%, 0% 0%,  0% 0%,  0% 0%,  0% 0%,  0% 0%;
+  50% {
+    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%,
+      90% 30%;
+  }
+  100% {
+    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%,
+      90% 20%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
   }
 }
 
 @keyframes bottomBubbles {
-  0%{
+  0% {
     background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
   }
   50% {
-    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;}
- 100% {
+    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
+  }
+  100% {
     background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
-  background-size: 0% 0%, 0% 0%,  0% 0%,  0% 0%,  0% 0%,  0% 0%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
   }
 }
 
 #timetable {
-    padding: 4% 2%;
+  padding: 4% 2%;
 }
 
 tbody tr:hover {
-    background-color: #D4D4D4;
+  background-color: #d4d4d4;
 }
 
 select {
-    margin-right: 0cm;
+  margin-right: 0cm;
 }
