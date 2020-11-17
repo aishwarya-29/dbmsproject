@@ -172,8 +172,13 @@ router.post("/class", function(req,res){
                         classAdvisor: faculty,
                         defaultBuilding: building,
                         courses: []
-                    }).then(cls => {
-                        var courseslist = [];
+                    });
+                });
+            });
+        });
+    });
+
+    var courseslist = [];
                         for(var i=0; i<classID.length; i++) {
                             var clist = [];
                             clist.push(classID[i]);
@@ -181,23 +186,20 @@ router.post("/class", function(req,res){
                             clist.push(formData[param]);
                             courseslist.push(clist);
                         }
-                        
+                        console.log(courseslist);
                         courseslist.forEach(cl => {
+                            if(cl[1]) {
                             for(var i=0; i<cl[1].length; i++) {
                                 Course.findOne({name: cl[1][i]}).then(course => {
                                     Class.findById(cl[0]).then(cls => {
+                                        console.log(cls.name, course.name);
                                             cls.courses.push(course);
-                                            cls.markModified('courses');
                                             cls.save();
                                     });
                                 });
                             }
-                        });
+                        }
                     })
-                });
-            });
-        });
-    });
 
     setTimeout(function(){
         res.redirect("/admin/profile");

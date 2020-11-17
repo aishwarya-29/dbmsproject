@@ -454,7 +454,7 @@ router.get("/generateTT", function(req,res){
     if(req.user && req.user.name) {
         var ttgen = require('../timetable');
         ttgen.fun();
-        setTimeout(function(){res.redirect("/admin/view");},2000);
+        setTimeout(function(){res.redirect("/admin/view");},10000);
     } else {
         res.redirect("/users");
     }

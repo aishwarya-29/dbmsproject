@@ -246,4 +246,16 @@ var admin2 = new Admin({
 //   }
 // });
 
+// Class.find({}, function(err, classes){
+//   if(err)
+//     console.log(err);
+//   else {
+//     classes.forEach(cls => {
+//       cls.courses = [];
+//       cls.save();
+//       console.log(cls);
+//     });
+//   }
+// });
+
 module.exports = app;

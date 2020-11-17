@@ -538,36 +538,28 @@ function generateNewTimetable() {
         });
         
         setTimeout(function(){
-            Class.find({}, function(err,classes){
+            
+            Slot.find({}, function(err, slots){
                 if(err)
                     console.log(err);
                 else {
-                    classes.forEach(cls => {
-                        Slot.find({classID: cls}, function(err, slots){
+                    slots.forEach(slot => {
+                        Timetable.findOne({classID: slot.classID}, function(err, tt){
                             if(err)
                                 console.log(err);
                             else {
-                                //console.log(slots);
-                                slots.forEach(slt => {
-                                    Timetable.findOne({classID: cls},function(err, foundTT){
-                                        if(err)
-                                            console.log(err);
-                                        else {
-                                            foundTT.slots.push(slt);
-                                            foundTT.save();
-                                            //console.log(foundTT);
-                                        }
-                                    });
-                                })
+                                tt.slots.push(slot);
+                            tt.save();
                             }
                         });
                     });
                 }
-            }); 
-        }, 3000);
+            });
+            
+        }, 20000);
         
         },3000);
-        
+         
     
     }
     
