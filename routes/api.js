@@ -184,4 +184,84 @@ router.get("/facultyTT", function(req,res){
   });
 });
 
+router.post("/substitute", function(req,res){
+  var classID = req.body.id;
+  var day = req.body.day;
+  var slot = req.body.slot;
+  var courseName = req.body.name;
+
+  var facs = [];
+  var substitutes = [];
+  var facTT;
+  Course.findOne({name: courseName}).then(course => {
+    Faculty.find({}).then(faculties => {
+      faculties.forEach(faculty => {
+        faculty.courses.forEach(fac_course => {
+          if(fac_course.equals(course._id)) {
+            facs.push(faculty.fullName);
+          }
+        });
+      });
+    }).then(xx => {
+      facs.forEach(fac => {
+        
+        var index = 0;
+        TimetableStructure.findOne({}).exec().then(tt => {
+            Faculty.find({}).exec().then(faculties => {
+                var flag = true;
+                index = 0;
+                faculties.forEach(facul => {
+                    if(facul.fullName == fac) {
+                        flag = false;
+                    }
+                    if(flag)
+                        index++;
+                });
+            }).then(x => {
+                facTT = tt.facultyTT[index];
+                var i=0,j=0;
+                facTT.forEach(tt => {
+                    j = 0;
+                    tt.forEach(tt2 => {
+                        if(!tt2 && i == day && j == slot) {
+                            substitutes.push(fac);
+                        }
+                        j++;
+                    });
+                    i++;
+                });
+        });
+        });
+      });
+  });
+  });
+
+  setTimeout(function(){
+    return res.send(substitutes);
+  },2000);
+
+});
+
+function getFacTT(fac_name) {
+  fac_name = fac_name.trim();
+  var index = 0;
+  TimetableStructure.findOne({}).exec().then(tt => {
+      Faculty.find({}).exec().then(faculties => {
+          var flag = true;
+          index = 0;
+          faculties.forEach(fac => {
+              if(fac.fullName == fac_name) {
+                  flag = false;
+              }
+              if(flag)
+                  index++;
+          });
+      }).then(x => {
+          var facTT = tt.facultyTT[index];
+          console.log(facTT);
+          return facTT;
+  });
+  });
+}
+
 module.exports = router;

@@ -29,8 +29,10 @@ $.ajax({
     }
 });
 
+var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 $('#search').click(function(){
+    $('.slots').html('');
     var clID = $('#class').val();
     $.ajax({
         type: "GET",
@@ -88,7 +90,7 @@ $('#search').click(function(){
             }
         }
 
-        var days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        
 
         $('.slots').append('<br><br><br><h5> Compatible Slots </h5>');
         for(i=0; i<freeslots.length; i++) {
@@ -99,4 +101,35 @@ $('#search').click(function(){
         
     }
 
+});
+
+$('#search2').click(function(){
+    var substitutes = [];
+    $('.substitute').html('');
+    var formData = {};
+    formData.id = $('#class').val();
+    formData.day = days.indexOf($('#day').val());
+    formData.slot = $('#slot').val()-1;
+    formData.name = $('#course').val();
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: '/api/substitute',
+        data: JSON.stringify(formData),
+        success: function (data) {
+            //alert(data);
+            substitutes = data;
+            setSubstitute();
+        },
+        error: function (e) {
+            console.log("ERROR: ", e);
+        }
+    });
+
+    function setSubstitute() {
+        $('.substitute').append('<br><br><br><h5> Compatible Substitute Teachers </h5>');
+        for(var i=0; i<substitutes.length; i++) {
+            $('.substitute').append('<span class="gradient">' + substitutes[i] + '</span> <br>');
+        }
+    }
 });
