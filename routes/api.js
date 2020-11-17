@@ -96,6 +96,7 @@ router.post("/building", function(req,res){
 
 router.post("/student", function(req,res){
   var students= req.body;
+  var send = {alert: "Success"};
   for(var i=0;i<students.length;i++)
  {
    var rno= students[i].rollnumber;
@@ -103,28 +104,38 @@ router.post("/student", function(req,res){
    var class_id= students[i].Class_id;
    var email= students[i].email;
    var password= students[i].password;
-   Class.findOne({name: class_id},function(error,cls){
-     if(error)
-     {
-       console.log(error);
-     }
-     else{
-        var student = new Student({
-        rollNumber:rno, fullName:fname, class: cls, email:email, password:pwd
-        });
-        Student.createUser(student,function(error,newstd){
-          if(error)
-          {
-            console.log(error);
+   var student = new Student({
+    rollNumber:rno, fullName:name, email:email, password:password
+    });
+    Student.createUser(student,function(error,newstd){
+      if(error)
+      {
+        console.log(error);
+      }
+      else{
+        console.log(newstd);
+      }
+    });
+
+    Student.findOne({fullName: name}).then(std => {
+      Class.findOne({name: class_id},function(error,cls){
+        if(error)
+        {
+          console.log(error);
+        }
+        else{
+          if(std) {
+           std.class = cls;
+           std.save();
           }
-          else{
-            console.log(newstd);
-          }
-        })
-     }
-   })
+        }
+      });
+    });
  }
-})
+
+ return res.send(send);
+});
+
 router.get("/classTT", function(req,res){
   var tt = [];
   var classID = req.query.id;
