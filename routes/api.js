@@ -94,6 +94,37 @@ router.post("/building", function(req,res){
   });
 });
 
+router.post("/student", function(req,res){
+  var students= req.body;
+  for(var i=0;i<students.length;i++)
+ {
+   var rno= students[i].rollnumber;
+   var name= students[i].fullName;
+   var class_id= students[i].Class_id;
+   var email= students[i].email;
+   var password= students[i].password;
+   Class.findOne({name: class_id},function(error,cls){
+     if(error)
+     {
+       console.log(error);
+     }
+     else{
+        var student = new Student({
+        rollNumber:rno, fullName:fname, class: cls, email:email, password:pwd
+        });
+        Student.createUser(student,function(error,newstd){
+          if(error)
+          {
+            console.log(error);
+          }
+          else{
+            console.log(newstd);
+          }
+        })
+     }
+   })
+ }
+})
 router.get("/classTT", function(req,res){
   var tt = [];
   var classID = req.query.id;
@@ -263,5 +294,6 @@ function getFacTT(fac_name) {
   });
   });
 }
+
 
 module.exports = router;

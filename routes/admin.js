@@ -561,5 +561,4 @@ router.post("/view/facultyTT", function(req,res){
     });
 });
 
-
 module.exports = router;
