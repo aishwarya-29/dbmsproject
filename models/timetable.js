@@ -11,4 +11,5 @@ var timetableSchema = mongoose.Schema({
     }]
 });
 
+
 module.exports = mongoose.model("Timetable", timetableSchema);
