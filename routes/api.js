@@ -114,23 +114,26 @@ router.post("/student", function(req,res){
       }
       else{
         console.log(newstd);
+        addClass(newstd.fullName);
       }
     });
 
-    Student.findOne({fullName: name}).then(std => {
-      Class.findOne({name: class_id},function(error,cls){
-        if(error)
-        {
-          console.log(error);
-        }
-        else{
-          if(std) {
-           std.class = cls;
-           std.save();
+    function addClass(name) {
+      Student.findOne({fullName: name}).then(std => {
+        Class.findOne({name: class_id},function(error,cls){
+          if(error)
+          {
+            console.log(error);
           }
-        }
+          else{
+            if(std) {
+             std.class = cls;
+             std.save();
+            }
+          }
+        });
       });
-    });
+    }
  }
 
  return res.send(send);

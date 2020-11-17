@@ -69,9 +69,7 @@
                        </div>  
                        <div class="endwrapper">    
                         <br /><br />
-                        <form action="/users/logout" method="POST">
-                          <button style="float: right" class="btn btn-dark" type="submit" id="submit-btn">Logout</button>
-                        </form>
+                        
                         <br /><br />
                     </div>
                     </div>           
@@ -182,6 +180,10 @@
 
     <br><br>
 </div>
+
+<form action="/users/logout" method="POST">
+    <button style="float: right" class="btn btn-dark" type="submit" id="submit-btn">Logout</button>
+  </form>
 
 <% set1.forEach(cid => { %>
     <div style="display: none;" class="courseid">

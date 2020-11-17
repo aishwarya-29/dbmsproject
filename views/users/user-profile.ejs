@@ -73,10 +73,6 @@
                </div>  
                <div class="endwrapper">    
                 <br /><br />
-                <form action="/users/logout" method="POST">
-                  <button style="float: right" class="btn btn-dark" type="submit" id="submit-btn">Logout</button>
-                </form>
-                <br /><br />
             </div>
             </div>           
           </div>
@@ -125,6 +121,10 @@
   <div style="display: none" class="courseid"><%= cid %></div>
   <% }) %> <% } %>
 </div>
+
+<form action="/users/logout" method="POST">
+  <button style="float: right" class="btn btn-dark" type="submit" id="submit-btn">Logout</button>
+</form>
 
 <br /><br />
 
