@@ -23,7 +23,6 @@ function start() {
             });
         },
         error: function (e) {
-            alert("Error!")
             console.log("ERROR: ", e);
         }
     });
@@ -50,7 +49,6 @@ function start() {
             });
         },
         error: function (e) {
-            alert("Error!")
             console.log("ERROR: ", e);
         }
     });
@@ -79,7 +77,6 @@ function start() {
             });
         },
         error: function (e) {
-            alert("Error!")
             console.log("ERROR: ", e);
         }
     });
@@ -108,7 +105,6 @@ function start() {
             });
         },
         error: function (e) {
-            alert("Error!")
             console.log("ERROR: ", e);
         }
     });
@@ -190,7 +186,6 @@ $('.special-btn').click(function(){
             alert("success");
         },
         error: function (e) {
-            alert("Error!")
             console.log("ERROR: ", e);
         }
     });

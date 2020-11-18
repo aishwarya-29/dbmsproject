@@ -24,7 +24,6 @@ $(document).ready(function(){
             });
         },
         error: function (e) {
-            alert("Error!")
             console.log("ERROR: ", e);
         }
     });
@@ -52,7 +51,6 @@ $(document).ready(function(){
             });
         },
         error: function (e) {
-            alert("Error!")
             console.log("ERROR: ", e);
         }
     });
@@ -82,7 +80,6 @@ $(document).ready(function(){
             });
         },
         error: function (e) {
-            alert("Error!")
             console.log("ERROR: ", e);
         }
     });
@@ -112,7 +109,6 @@ $(document).ready(function(){
             });
         },
         error: function (e) {
-            alert("Error!")
             console.log("ERROR: ", e);
         }
     });
@@ -209,7 +205,6 @@ $('.special-btn').click(function(){
         success: function (data) {
         },
         error: function (e) {
-            alert("Error!")
             console.log("ERROR: ", e);
         }
     });

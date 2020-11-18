@@ -127,7 +127,6 @@ $('#submit-btn').click(function(){
         success: function (data) {
         },
         error: function (e) {
-            alert("Error!")
             console.log("ERROR: ", e);
         }
     });
